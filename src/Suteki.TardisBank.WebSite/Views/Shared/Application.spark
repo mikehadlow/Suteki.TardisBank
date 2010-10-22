@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Tardis Bank</title>
+        <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    </head>
+    <body>
+        <use content="view" />
+    </body>
+</html>
