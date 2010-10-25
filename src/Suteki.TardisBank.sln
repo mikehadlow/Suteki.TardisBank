@@ -10,8 +10,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Suteki.TardisBank.Tests", "Suteki.TardisBank.Tests\Suteki.TardisBank.Tests.csproj", "{68141492-9F9B-49A1-8AC2-EF330F521FBD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Suteki.TardisBank.WebSite", "Suteki.TardisBank.WebSite\Suteki.TardisBank.WebSite.csproj", "{1A397F79-73F8-4216-A4F8-D98E1BDEDCC4}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Suteki.TardisBank.Web", "Suteki.TardisBank.Web\Suteki.TardisBank.Web.csproj", "{833B8530-E836-4D80-9296-64C9F176F06B}"
 EndProject
 Global
@@ -28,10 +26,6 @@ Global
 		{68141492-9F9B-49A1-8AC2-EF330F521FBD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{68141492-9F9B-49A1-8AC2-EF330F521FBD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{68141492-9F9B-49A1-8AC2-EF330F521FBD}.Release|Any CPU.Build.0 = Release|Any CPU
-		{1A397F79-73F8-4216-A4F8-D98E1BDEDCC4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1A397F79-73F8-4216-A4F8-D98E1BDEDCC4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1A397F79-73F8-4216-A4F8-D98E1BDEDCC4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1A397F79-73F8-4216-A4F8-D98E1BDEDCC4}.Release|Any CPU.Build.0 = Release|Any CPU
 		{833B8530-E836-4D80-9296-64C9F176F06B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{833B8530-E836-4D80-9296-64C9F176F06B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{833B8530-E836-4D80-9296-64C9F176F06B}.Release|Any CPU.ActiveCfg = Release|Any CPU

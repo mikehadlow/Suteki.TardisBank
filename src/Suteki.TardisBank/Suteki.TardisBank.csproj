@@ -41,6 +41,9 @@
     <Reference Include="Castle.Windsor">
       <HintPath>..\packages\Castle.Windsor.2.5.1\lib\NET40\Castle.Windsor.dll</HintPath>
     </Reference>
+    <Reference Include="DotNetOpenAuth">
+      <HintPath>..\packages\DotNetOpenAuth.3.4.5.10202\lib\DotNetOpenAuth.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="Microsoft.CSharp" />
@@ -56,6 +59,7 @@
       <Link>Version.cs</Link>
     </Compile>
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\OpenidController.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="IoC\ControllersInstaller.cs" />
     <Compile Include="IoC\CoreInstaller.cs" />
