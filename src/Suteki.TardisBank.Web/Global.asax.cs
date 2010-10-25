@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
@@ -13,6 +15,11 @@ namespace Suteki.TardisBank.Web
 
     public class MvcApplication : System.Web.HttpApplication, IContainerAccessor
     {
+        public static void RegisterGlobalFilters(GlobalFilterCollection filters)
+        {
+            filters.Add(new HandleErrorAttribute());
+        }
+
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
@@ -24,13 +31,15 @@ namespace Suteki.TardisBank.Web
             );
 
         }
-        
+
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();
 
+            RegisterGlobalFilters(GlobalFilters.Filters);
             RegisterRoutes(RouteTable.Routes);
             InitialiseContainer();
+            InitialiseControllerFactory();
         }
 
         protected void InitialiseContainer()
@@ -39,9 +48,14 @@ namespace Suteki.TardisBank.Web
             {
                 container = new WindsorContainer()
                     .Install(
-                        FromAssembly.This(),
                         FromAssembly.InDirectory(new AssemblyFilter(HttpRuntime.BinDirectory, "Suteki.*.dll")));
             }
+        }
+
+        protected void InitialiseControllerFactory()
+        {
+            var controllerFactory = container.Resolve<IControllerFactory>();
+            ControllerBuilder.Current.SetControllerFactory(controllerFactory);
         }
 
         static IWindsorContainer container;
