@@ -1,43 +1,57 @@
 // ReSharper disable InconsistentNaming
 using System.Collections.Generic;
 using NUnit.Framework;
-using Raven.Client.Document;
+using Raven.Client;
+using Suteki.TardisBank.Tests.Db;
 
 namespace Suteki.TardisBank.Tests.Spikes
 {
     [TestFixture]
-    public class RavenDbSpikes 
+    public class RavenDbSpikes : LocalClientTest
     {
+        IDocumentStore store;
+
+        [SetUp]
+        public void SetUp()
+        {
+            store = NewDocumentStore();
+        }
+
+        [TearDown]
+        public void TearDown()
+        {
+            if (store != null)
+            {
+                store.Dispose();
+            }
+        }
+
         [Test]
         public void First_Raven_Client_test()
         {
-            using(var store = new DocumentStore { Url = "http://localhost:8080" })
+            using (var session = store.OpenSession())
             {
-                store.Initialize();
-                using (var session = store.OpenSession())
+                var product = new Product
                 {
-                    var product = new Product
-                    {
-                        Cost = 3.99m,
-                        Name = "Milk",
-                    };
-                    session.Store(product);
-                    session.SaveChanges();
+                    Cost = 3.99m,
+                    Name = "Milk",
+                };
+                session.Store(product);
+                session.SaveChanges();
 
-                    session.Store(new Order
+                session.Store(new Order
+                {
+                    Customer = "customers/ayende",
+                    OrderLines =
                     {
-                        Customer = "customers/ayende",
-                        OrderLines =
-                      {
-                          new OrderLine
-                          {
-                              ProductId = product.Id,
-                              Quantity = 3
-                          },
-                      }
-                    });
-                    session.SaveChanges();
-                }
+                        new OrderLine
+                        {
+                            ProductId = product.Id,
+                            Quantity = 3
+                        },
+                    }
+                });
+                session.SaveChanges();
             }
         }        
     }

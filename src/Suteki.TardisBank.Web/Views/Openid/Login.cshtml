@@ -6,7 +6,7 @@
 	<p>You must log in before entering the Members Area: </p>
 	<form action="Authenticate?ReturnUrl=@HttpUtility.UrlEncode(Request.QueryString["ReturnUrl"])" method="post">
 	<label for="openid_identifier">OpenID: </label>
-	<input id="openid_identifier" name="openid_identifier" size="40" />
+	<input type="text" id="openid_identifier" name="openid_identifier" size="40" value="https://www.google.com/accounts/o8/id" />
 	<input type="submit" value="Login" />
 	</form>
 

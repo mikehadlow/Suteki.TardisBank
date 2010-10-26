@@ -1,14 +1,27 @@
 using System.Web.Mvc;
-using System.Web.Security;
-using DotNetOpenAuth.Messaging;
-using DotNetOpenAuth.OpenId;
 using DotNetOpenAuth.OpenId.RelyingParty;
+using Suteki.TardisBank.Model;
+using Suteki.TardisBank.Mvc;
+using Suteki.TardisBank.Services;
 
 namespace Suteki.TardisBank.Controllers
 {
     public class OpenidController : Controller
     {
-        private static OpenIdRelyingParty openid = new OpenIdRelyingParty();
+        readonly IFormsAuthenticationService formsAuthenticationService;
+        readonly IOpenIdService openIdService;
+        readonly IUserService userService;
+
+        public OpenidController(
+            IFormsAuthenticationService formsAuthenticationService, 
+            IOpenIdService openIdService, 
+            IUserService userService)
+        {
+            this.formsAuthenticationService = formsAuthenticationService;
+            this.userService = userService;
+            this.openIdService = openIdService;
+        }
+
 
         public ActionResult Index()
         {
@@ -22,7 +35,7 @@ namespace Suteki.TardisBank.Controllers
 
         public ActionResult Logout()
         {
-            FormsAuthentication.SignOut();
+            formsAuthenticationService.SignOut();
             return Redirect("~/Home");
         }
 
@@ -32,58 +45,56 @@ namespace Suteki.TardisBank.Controllers
             return View("Login");
         }
 
-        [ValidateInput(false)]
+        [ValidateInput(false), UnitOfWork]
         public ActionResult Authenticate(string returnUrl)
         {
-            var response = openid.GetResponse();
+            var response = openIdService.GetResponse();
+
+            // Stage 2: Make the request to the openId provider
             if (response == null)
             {
-                // Stage 2: user submitting Identifier
-                Identifier id;
-                if (Identifier.TryParse(Request.Form["openid_identifier"], out id))
+                try
                 {
-                    try
-                    {
-                        return openid.CreateRequest(Request.Form["openid_identifier"]).RedirectingResponse.AsActionResult();
-                    }
-                    catch (ProtocolException ex)
-                    {
-                        ViewData["Message"] = ex.Message;
-                        return View("Login");
-                    }
+                    return openIdService.CreateRequest(Request.Form["openid_identifier"]);
                 }
-                else
+                catch (OpenIdException openIdException)
                 {
-                    ViewData["Message"] = "Invalid identifier";
+                    ViewData["Message"] = openIdException.Message;
                     return View("Login");
                 }
             }
-            else
+            
+            // Stage 3: OpenID Provider sending assertion response
+            switch (response.Status)
             {
-                // Stage 3: OpenID Provider sending assertion response
-                switch (response.Status)
-                {
-                    case AuthenticationStatus.Authenticated:
-                        Session["FriendlyIdentifier"] = response.FriendlyIdentifierForDisplay;
-                        FormsAuthentication.SetAuthCookie(response.ClaimedIdentifier, false);
-                        if (!string.IsNullOrEmpty(returnUrl))
-                        {
-                            return Redirect(returnUrl);
-                        }
-                        else
-                        {
-                            return RedirectToAction("Index", "Home");
-                        }
-                    case AuthenticationStatus.Canceled:
-                        ViewData["Message"] = "Canceled at provider";
-                        return View("Login");
-                    case AuthenticationStatus.Failed:
-                        ViewData["Message"] = response.Exception.Message;
-                        return View("Login");
-                }
+                case AuthenticationStatus.Authenticated:
+                    formsAuthenticationService.SetAuthCookie(response.ClaimedIdentifier, false);
+
+                    CreateNewParentIfTheyDontAlreadyExist(response);
+
+                    if (!string.IsNullOrEmpty(returnUrl))
+                    {
+                        return Redirect(returnUrl);
+                    }
+                    return RedirectToAction("Index", "Home");
+                case AuthenticationStatus.Canceled:
+                    ViewData["Message"] = "Canceled at provider";
+                    return View("Login");
+                case AuthenticationStatus.Failed:
+                    ViewData["Message"] = response.Exception.Message;
+                    return View("Login");
             }
-            return new EmptyResult();
+
+            throw new TardisBankException("Unknown AuthenticationStatus Response");
         }
-        
+
+        void CreateNewParentIfTheyDontAlreadyExist(IAuthenticationResponse response)
+        {
+            var userId = Model.User.UserIdFromUserName(response.ClaimedIdentifier);
+            if (userService.GetUser(userId) != null) return;
+
+            var parent = new Parent(response.FriendlyIdentifierForDisplay, response.ClaimedIdentifier);
+            userService.SaveUser(parent);
+        }
     }
 }
