@@ -10,6 +10,7 @@ namespace Suteki.TardisBank.Services
     {
         User CurrentUser { get; }
         User GetUser(string userId);
+        User GetUserByUserName(string userName);
         void SaveUser(User user);
         IEnumerable<Child> GetChildrenOf(Parent parent);
     }
@@ -37,16 +38,41 @@ namespace Suteki.TardisBank.Services
 
         public User GetUser(string userId)
         {
+            if (userId == null)
+            {
+                throw new ArgumentNullException("userId");
+            }
+
             return session.Load<User>(userId);
+        }
+
+        public User GetUserByUserName(string userName)
+        {
+            if (userName == null)
+            {
+                throw new ArgumentNullException("userName");
+            }
+
+            return session.Load<User>(User.UserIdFromUserName(userName));
         }
 
         public void SaveUser(User user)
         {
+            if (user == null)
+            {
+                throw new ArgumentNullException("user");
+            }
+
             session.Store(user);
         }
 
         public IEnumerable<Child> GetChildrenOf(Parent parent)
         {
+            if (parent == null)
+            {
+                throw new ArgumentNullException("parent");
+            }
+
             var childIds = parent.Children.Select(x => x.ChildId).ToArray();
             return session.Load<Child>(childIds).AsEnumerable();
         }

@@ -113,7 +113,10 @@
     <None Include="Views\Openid\Index.cshtml" />
     <None Include="Views\Openid\Login.cshtml" />
     <None Include="Views\Shared\SiteLayout.cshtml" />
+    <None Include="Views\User\Confirm.cshtml" />
     <None Include="Views\User\Index.cshtml" />
+    <None Include="Views\User\Login.cshtml" />
+    <None Include="Views\User\Register.cshtml" />
     <None Include="Views\_ViewStart.cshtml" />
   </ItemGroup>
   <ItemGroup />

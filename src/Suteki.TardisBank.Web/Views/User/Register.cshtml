@@ -1,0 +1,20 @@
+﻿@model RegistrationViewModel
+
+@{
+    Layout = "~/Views/Shared/SiteLayout.cshtml";
+}
+
+<p>Errors</p>
+<div>
+    @{ Html.BeginForm(); }
+        <label for="Email">Email</label>
+        @Html.TextBoxFor(x => x.Email)
+        <label for="Name">Name</label>
+        @Html.TextBoxFor(x => x.Name)
+        <label for="Password">Password</label>
+        @Html.PasswordFor(x => x.Password)
+        <input type="submit" value="Register" />
+    @{ Html.EndForm(); }
+</div>
+
+

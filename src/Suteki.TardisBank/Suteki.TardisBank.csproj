@@ -51,6 +51,7 @@
       <HintPath>..\..\NonPackageLibraries\RavenDb\Client\Raven.Client.Lightweight.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Web" />
@@ -85,6 +86,8 @@
     <Compile Include="Services\OpenIdService.cs" />
     <Compile Include="Services\UserService.cs" />
     <Compile Include="TardisBankException.cs" />
+    <Compile Include="ViewModel\LoginViewModel.cs" />
+    <Compile Include="ViewModel\RegistrationViewModel.cs" />
     <Compile Include="ViewModel\UserViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
