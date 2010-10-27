@@ -8,6 +8,7 @@ body
 #header
 {
     background-color: #2580a2;
+    background-image: url(Images/title_background.png);
     color: #fff;
 }
 #header a
