@@ -1,6 +1,6 @@
 ﻿@model UserViewModel
 
-<span>@Model.Name</span> 
+<span>@Model.UserName</span> 
 @if(Model.IsLoggedIn) {
     @Html.ActionLink("Logout", "Logout")
 } else {
