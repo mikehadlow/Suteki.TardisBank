@@ -75,6 +75,7 @@
     <Content Include="Content\960.css" />
     <Content Include="Content\Images\hover.gif" />
     <Content Include="Content\Images\seperator.gif" />
+    <Content Include="Content\Images\title_background.png" />
     <Content Include="Content\menu_style.css" />
     <Content Include="Content\reset.css" />
     <Content Include="Content\text.css" />
