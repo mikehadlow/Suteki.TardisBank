@@ -1,0 +1,27 @@
+
+#menu {
+	background: #333;
+	float: left;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	width: 100%;
+}
+#menu li {
+	float: left;
+	margin: 0;
+	padding: 0;
+}
+#menu a {
+	background: #333 url("images/seperator.gif") bottom right no-repeat;
+	color: #ccc;
+	display: block;
+	float: left;
+	margin: 0;
+	padding: 8px 12px;
+	text-decoration: none;
+}
+#menu a:hover {
+	background: #2580a2 url("images/hover.gif") bottom center no-repeat;
+	color: #fff;
+	padding-bottom: 8px;

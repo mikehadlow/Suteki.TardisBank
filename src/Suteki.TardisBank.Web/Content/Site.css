@@ -1,7 +1,55 @@
 body
 {
-    font-family:Arial;
-    font-size:10pt;
+    background-color: #F2F2F0;
+    color: #333;
+    font: 100% Arial;
+}
+
+#header
+{
+    background-color: #2580a2;
+    color: #fff;
+}
+#header a
+{
+    color: #ccc;
+    font-weight:bold;
+    text-decoration:none;
+}
+#header a:hover
+{
+    color: #fff
+}
+
+#login_status
+{
+    text-align:right;
+}
+
+#content a
+{
+    color: #ccc;
+    background-color: #333;
+    padding: 7px;
+    text-decoration:none;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
+
+#content a:hover
+{
+    color: #fff;
+}
+
+/* Table */
+th
+{
+    text-align:left;
+    padding:5px 5px 5px 5px;
+}
+td
+{
+    padding:5px 5px 5px 5px;
 }
 
 /* Styles for validation helpers
