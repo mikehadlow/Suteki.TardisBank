@@ -11,7 +11,11 @@
     <tr class="@(message.HasBeenRead ? "read" : "unread")">
         <td>@message.Date.ToShortDateString()</td>
         <td>@message.Text</td>
+        @if(message.HasBeenRead) {
+        <td>&nbsp;</td>
+        } else {
         <td>@Html.ActionLink("OK", "ReadMessage", new { id = @message.Id })</td>
+        }
     </tr>
 }
 

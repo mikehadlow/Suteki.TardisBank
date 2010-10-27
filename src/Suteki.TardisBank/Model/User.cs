@@ -10,7 +10,7 @@ namespace Suteki.TardisBank.Model
         public string Name { get; private set; }
         public string UserName { get; private set; }
         public string Password { get; private set; }
-        public IList<Message> Messages { get; private set; }
+        public IList<Message> Messages { get; protected set; }
 
         protected User(string name, string userName, string password)
         {
