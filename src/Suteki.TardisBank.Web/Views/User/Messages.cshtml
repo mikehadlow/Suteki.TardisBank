@@ -1,0 +1,19 @@
+﻿@model User
+
+@{
+    Layout = "~/Views/Shared/SiteLayout.cshtml";
+}
+
+<h2>Your Messages</h2>
+<table>
+
+@foreach(var message in Model.Messages.Reverse()) {
+    <tr class="@(message.HasBeenRead ? "read" : "unread")">
+        <td>@message.Date.ToShortDateString()</td>
+        <td>@message.Text</td>
+        <td>@Html.ActionLink("OK", "ReadMessage", new { id = @message.Id })</td>
+    </tr>
+}
+
+</table>
+

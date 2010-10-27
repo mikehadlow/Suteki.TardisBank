@@ -7,7 +7,7 @@ namespace Suteki.TardisBank.Model
     {
         public IList<ChildProxy> Children { get; private set; }
 
-        public Parent(string name, string userName) : base(name, userName)
+        public Parent(string name, string userName, string password) : base(name, userName, password)
         {
             Children = new List<ChildProxy>();
         }
@@ -22,7 +22,11 @@ namespace Suteki.TardisBank.Model
 
         public void MakePaymentTo(Child child, decimal amount)
         {
-            var description = string.Format("Payment from {0}", Name);
+            MakePaymentTo(child, amount, string.Format("Payment from {0}", Name));
+        }
+
+        public void MakePaymentTo(Child child, decimal amount, string description)
+        {
             if (!HasChild(child))
             {
                 throw new TardisBankException("{0} is not a child of {1}", child.Name, Name);

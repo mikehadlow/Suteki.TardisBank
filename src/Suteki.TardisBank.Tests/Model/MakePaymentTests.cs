@@ -17,10 +17,10 @@ namespace Suteki.TardisBank.Tests.Model
         [SetUp]
         public void SetUp()
         {
-            parent = new Parent("Mike Hadlow", "mike@yahoo.com");
+            parent = new Parent("Mike Hadlow", "mike@yahoo.com", "pwd");
             child = parent.CreateChild("Leo", "leohadlow", "xxx");
 
-            somebodyElse = new Parent("John Robinson", "john@gmail.com");
+            somebodyElse = new Parent("John Robinson", "john@gmail.com", "pwd");
             somebodyElsesChild = somebodyElse.CreateChild("Jim", "jimrobinson", "yyy");
         }
 

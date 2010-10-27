@@ -47,7 +47,7 @@ namespace Suteki.TardisBank.Tests.Model
         {
             using (var session = store.OpenSession())
             {
-                var parent = new Parent("Mike Hadlow", "mike@yahoo.com");
+                var parent = new Parent("Mike Hadlow", "mike@yahoo.com", "yyy");
                 var child = parent.CreateChild("Leo", "leohadlow", "xxx");
                 session.Store(child);
                 session.SaveChanges();

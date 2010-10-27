@@ -3,16 +3,23 @@
 @{
     Layout = "~/Views/Shared/SiteLayout.cshtml";
 }
-
+<h2>Log In</h2>
+<p>@Html.ValidationSummary()</p>
 <div>
     @{ Html.BeginForm(); }
-        <label for="Name">User Name</label>
-        @Html.TextBoxFor(x => x.Name)
-        <label for="Password">Password</label>
-        @Html.PasswordFor(x => x.Password)
-        <input type="submit" value="Register" />
+    <table>
+        <tr>
+            <td><label for="Name">User Name (Email for Parents)</label></td>
+            <td>@Html.TextBoxFor(x => x.Name)</td>
+        </tr>
+        <tr>
+            <td><label for="Password">Your Password</label></td>
+            <td>@Html.PasswordFor(x => x.Password)</td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td><input type="submit" value="Log In" /></td>
+        </tr>
+    </table>
     @{ Html.EndForm(); }
 </div>
-
-
-

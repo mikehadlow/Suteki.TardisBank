@@ -6,6 +6,7 @@ namespace Suteki.TardisBank.Services
     {
         void SignOut();
         void SetAuthCookie(string userName, bool createPersistentCookie);
+        string HashAndSalt(string userName, string password);
     }
 
     public class FormsAuthenticationService : IFormsAuthenticationService
@@ -18,6 +19,12 @@ namespace Suteki.TardisBank.Services
         public void SetAuthCookie(string userName, bool createPersistentCookie)
         {
             FormsAuthentication.SetAuthCookie(userName, createPersistentCookie);
+        }
+
+        public string HashAndSalt(string userName, string password)
+        {
+            var saltedPassword = userName + password;
+            return FormsAuthentication.HashPasswordForStoringInConfigFile(saltedPassword, "SHA1");
         }
     }
 }

@@ -10,7 +10,12 @@
 </head>
 <body>
     <div id="header">
-        @Html.Action("Index", "User")
+        <div id="login_status">@Html.Action("Index", "User")</div>
+        <h1>Tardis Bank</h1>
+        <p>Pocket money on-line banking for kids</p>
+    </div>
+    <div id="menu">
+       @Html.Action("Index", "Menu") 
     </div>
     <div>
         <!-- start of content -->

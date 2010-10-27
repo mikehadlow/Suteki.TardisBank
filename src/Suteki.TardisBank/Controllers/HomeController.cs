@@ -1,4 +1,3 @@
-using System;
 using System.Web.Mvc;
 
 namespace Suteki.TardisBank.Controllers
@@ -8,6 +7,17 @@ namespace Suteki.TardisBank.Controllers
         public ViewResult Index()
         {
             return View("Index");
+        }
+
+        public ViewResult Error()
+        {
+            // throw an error for testing
+            throw new TardisBankException("Something really bad happened!");
+        }
+
+        public ActionResult NotFound()
+        {
+            return new HttpStatusCodeResult(404);
         }
     }
 }

@@ -93,7 +93,7 @@ namespace Suteki.TardisBank.Controllers
             var userId = Model.User.UserIdFromUserName(response.ClaimedIdentifier);
             if (userService.GetUser(userId) != null) return;
 
-            var parent = new Parent(response.FriendlyIdentifierForDisplay, response.ClaimedIdentifier);
+            var parent = new Parent(response.FriendlyIdentifierForDisplay, response.ClaimedIdentifier, "todo");
             userService.SaveUser(parent);
         }
     }

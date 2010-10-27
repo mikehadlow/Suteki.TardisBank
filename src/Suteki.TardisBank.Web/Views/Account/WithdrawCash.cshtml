@@ -1,0 +1,26 @@
+﻿@model WithdrawCashViewModel
+
+@{
+    Layout = "~/Views/Shared/SiteLayout.cshtml";
+}
+<h2>Withdraw Cash</h2>
+<p>@Html.ValidationSummary()</p>
+<div>
+    @{ Html.BeginForm(); }
+    <table>
+        <tr>
+            <td><label for="Description">Payment Description</label></td>
+            <td>@Html.TextBoxFor(x => x.Description)</td>
+        </tr>
+        <tr>
+            <td><label for="Amount">Amount</label></td>
+            <td>@Html.TextBoxFor(x => x.Amount)</td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td><input type="submit" value="Withdraw Cash" /></td>
+        </tr>
+    </table>
+    @{ Html.EndForm(); }
+</div>
+

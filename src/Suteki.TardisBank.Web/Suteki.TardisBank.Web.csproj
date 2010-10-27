@@ -109,13 +109,24 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Views\Account\MakePayment.cshtml" />
+    <None Include="Views\Account\PaymentConfirmation.cshtml" />
+    <None Include="Views\Account\Summary.cshtml" />
+    <None Include="Views\Account\WithdrawCash.cshtml" />
+    <None Include="Views\Account\WithdrawCashConfirm.cshtml" />
+    <None Include="Views\Child\Index.cshtml" />
     <None Include="Views\Home\Index.cshtml" />
+    <None Include="Views\Menu\ChildMenu.cshtml" />
+    <None Include="Views\Menu\GuestMenu.cshtml" />
+    <None Include="Views\Menu\ParentMenu.cshtml" />
     <None Include="Views\Openid\Index.cshtml" />
     <None Include="Views\Openid\Login.cshtml" />
     <None Include="Views\Shared\SiteLayout.cshtml" />
+    <None Include="Views\User\AddChild.cshtml" />
     <None Include="Views\User\Confirm.cshtml" />
     <None Include="Views\User\Index.cshtml" />
     <None Include="Views\User\Login.cshtml" />
+    <None Include="Views\User\Messages.cshtml" />
     <None Include="Views\User\Register.cshtml" />
     <None Include="Views\_ViewStart.cshtml" />
   </ItemGroup>

@@ -29,32 +29,71 @@ namespace Suteki.TardisBank.Controllers
         [HttpGet]
         public ActionResult Register()
         {
-            var registrationViewModel = new RegistrationViewModel
+            return View("Register", GetRegistrationViewModel());
+        }
+
+        static RegistrationViewModel GetRegistrationViewModel()
+        {
+            return new RegistrationViewModel
             {
                 Email = "",
                 Name = "",
                 Password = ""
             };
-            return View("Register", registrationViewModel);
         }
 
         [HttpPost, UnitOfWork]
         public ActionResult Register(RegistrationViewModel registrationViewModel)
         {
+            return RegisterInternal(registrationViewModel,
+                createUser: (pwd) => new Parent(registrationViewModel.Name, registrationViewModel.Email, pwd),
+                confirmAction: () => RedirectToAction("Confirm"),
+                invalidModelStateAction: () => View("Register", registrationViewModel),
+                afterUserCreated: user => formsAuthenticationService.SetAuthCookie(user.UserName, false)
+                );
+        }
+
+        ActionResult RegisterInternal(
+            RegistrationViewModel registrationViewModel, 
+            Func<string, User> createUser,
+            Func<ActionResult> confirmAction, 
+            Func<ActionResult> invalidModelStateAction,
+            Action<User> afterUserCreated = null)
+        {
             if (registrationViewModel == null)
             {
                 throw new ArgumentNullException("registrationViewModel");
             }
+            if (createUser == null)
+            {
+                throw new ArgumentNullException("createUser");
+            }
+            if (confirmAction == null)
+            {
+                throw new ArgumentNullException("confirmAction");
+            }
+            if (invalidModelStateAction == null)
+            {
+                throw new ArgumentNullException("invalidModelStateAction");
+            }
 
             if (ModelState.IsValid)
             {
-                var parent = new Parent(registrationViewModel.Name, registrationViewModel.Email);
-                userService.SaveUser(parent);
-                formsAuthenticationService.SetAuthCookie(parent.UserName, false);
-                return RedirectToAction("Confirm");
+                var hashedPassword = formsAuthenticationService.HashAndSalt(
+                    registrationViewModel.Email,
+                    registrationViewModel.Password);
+
+                var user = createUser(hashedPassword);
+                userService.SaveUser(user);
+
+                if (afterUserCreated != null)
+                {
+                    afterUserCreated(user);
+                }
+                return confirmAction();
             }
 
-            return View("Register", registrationViewModel);
+            return invalidModelStateAction();
         }
 
         [HttpGet]
@@ -84,14 +123,24 @@ namespace Suteki.TardisBank.Controllers
 
             if (ModelState.IsValid)
             {
-                var parent = userService.GetUserByUserName(loginViewModel.Name);
-                if (parent != null)
+                var user = userService.GetUserByUserName(loginViewModel.Name);
+                if (user != null)
                 {
-                    formsAuthenticationService.SetAuthCookie(parent.UserName, false);
-                    return RedirectToAction("Index", "Home");
-                }
+                    var hashedPassword = formsAuthenticationService.HashAndSalt(
+                        loginViewModel.Name,
+                        loginViewModel.Password);
 
-                ModelState.AddModelError("Name", "Invalid Name");
+                    if(hashedPassword == user.Password)
+                    {
+                        formsAuthenticationService.SetAuthCookie(user.UserName, false);
+                        return RedirectToAction("Index", "Home");
+                    }
+                    ModelState.AddModelError("Password", "Invalid Password");
+                }
+                else
+                {
+                    ModelState.AddModelError("Name", "Invalid Name");
+                }
             }
 
             return View("Login", loginViewModel);
@@ -102,6 +151,52 @@ namespace Suteki.TardisBank.Controllers
         {
             formsAuthenticationService.SignOut();
             return RedirectToAction("Index", "Home");
+        }
+
+        [HttpGet]
+        public ActionResult AddChild()
+        {
+            return View("AddChild", GetRegistrationViewModel());
+        }
+
+        [HttpPost, UnitOfWork]
+        public ActionResult AddChild(RegistrationViewModel registrationViewModel)
+        {
+            var parent = userService.CurrentUser as Parent;
+            if(parent == null)
+            {
+                //throw new TardisBankException("You must be a parent in order to register a Child");
+                return StatusCode.NotFound;
+            }
+
+            return RegisterInternal(registrationViewModel,
+                createUser: (pwd) => parent.CreateChild(registrationViewModel.Name, registrationViewModel.Email, pwd),
+                confirmAction: () => RedirectToAction("Index", "Child"),
+                invalidModelStateAction: () => View("AddChild", registrationViewModel)
+                );
+        }
+
+        [HttpGet]
+        public ActionResult Messages()
+        {
+            var user = userService.CurrentUser;
+            if (user == null)
+            {
+                return StatusCode.NotFound;
+            }
+            return View("Messages", user);
+        }
+
+        [HttpGet, UnitOfWork]
+        public ActionResult ReadMessage(int id)
+        {
+            var user = userService.CurrentUser;
+            if (user == null)
+            {
+                return StatusCode.NotFound;
+            }
+            user.ReadMessage(id);
+            return RedirectToAction("Messages");
         }
     }
 }

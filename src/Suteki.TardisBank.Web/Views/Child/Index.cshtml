@@ -1,0 +1,18 @@
+﻿@model Parent
+
+@{
+    Layout = "~/Views/Shared/SiteLayout.cshtml";
+}
+
+<h2>Your Children</h2>
+<table>
+@foreach(var child in Model.Children) {
+    <tr>
+        <td>@child.Name</td>
+        <td>@Html.ActionLink("Make a Payment", "MakePayment", "Account", new { id = child.ChildId }, null)</td>
+        <td>@Html.ActionLink("View Account", "ParentView", "Account", new { id = child.ChildId }, null)</td>
+    </tr>
+}
+</table>
+
+

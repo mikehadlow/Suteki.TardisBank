@@ -1,0 +1,10 @@
+﻿@model MakePaymentViewModel
+
+@{
+    Layout = "~/Views/Shared/SiteLayout.cshtml";
+}
+
+<h2>Payment Confirmed</h2>
+<p>You have transferred @Model.Amount.ToString("0.00") to @Model.ChildName's account with the description "@Model.Description".</p>
+
+

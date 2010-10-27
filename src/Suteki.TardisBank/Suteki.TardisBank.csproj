@@ -65,8 +65,12 @@
     <Compile Include="..\Version.cs">
       <Link>Version.cs</Link>
     </Compile>
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ChildController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MenuController.cs" />
     <Compile Include="Controllers\OpenidController.cs" />
+    <Compile Include="Controllers\StatusCode.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="IoC\ControllersInstaller.cs" />
@@ -76,6 +80,7 @@
     <Compile Include="IoC\WindsorControllerFactory.cs" />
     <Compile Include="Model\Account.cs" />
     <Compile Include="Model\Child.cs" />
+    <Compile Include="Model\Message.cs" />
     <Compile Include="Model\Parent.cs" />
     <Compile Include="Model\Transaction.cs" />
     <Compile Include="Model\User.cs" />
@@ -87,8 +92,10 @@
     <Compile Include="Services\UserService.cs" />
     <Compile Include="TardisBankException.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
+    <Compile Include="ViewModel\MakePaymentViewModel.cs" />
     <Compile Include="ViewModel\RegistrationViewModel.cs" />
     <Compile Include="ViewModel\UserViewModel.cs" />
+    <Compile Include="ViewModel\WithdrawCashViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
