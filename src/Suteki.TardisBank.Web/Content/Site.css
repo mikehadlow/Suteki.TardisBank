@@ -42,6 +42,24 @@ body
     color: #fff;
 }
 
+div.rightline
+{
+    border-right: 1px solid #ccc;
+    padding-right: 10px;
+}
+
+#footer
+{
+    background: #333;
+    color: #ccc;
+    font-size: 10px;
+}
+
+#footer a
+{
+    color: #ccc;
+}
+
 /* Table */
 th
 {
