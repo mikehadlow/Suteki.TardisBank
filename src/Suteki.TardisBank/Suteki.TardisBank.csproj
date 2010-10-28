@@ -80,8 +80,10 @@
     <Compile Include="IoC\WindsorControllerFactory.cs" />
     <Compile Include="Model\Account.cs" />
     <Compile Include="Model\Child.cs" />
+    <Compile Include="Model\Interval.cs" />
     <Compile Include="Model\Message.cs" />
     <Compile Include="Model\Parent.cs" />
+    <Compile Include="Model\PaymentSchedule.cs" />
     <Compile Include="Model\Transaction.cs" />
     <Compile Include="Model\User.cs" />
     <Compile Include="Mvc\UnitOfWorkAttribute.cs" />

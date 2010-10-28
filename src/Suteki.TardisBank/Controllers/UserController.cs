@@ -22,7 +22,7 @@ namespace Suteki.TardisBank.Controllers
         public ActionResult Index()
         {
             var user = userService.CurrentUser;
-            var userName = user == null ? "Guest" : user.UserName;
+            var userName = user == null ? "Hello Stranger!" : user.UserName;
             return View("Index", new UserViewModel { UserName = userName, IsLoggedIn = user != null });
         }
 
