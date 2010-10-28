@@ -6,8 +6,11 @@ Online pocket money banking for parents and kids.
 http://tardisbank.com
 http://github.com/mikehadlow/Suteki.TardisBank
 
+Licence: Apache 2.0
+http://www.apache.org/licenses/LICENSE-2.0.html
+
 Based on:
-.NET 4.0
+Microsoft .NET 4.0
 MVC3
 Windsor
 RavenDb
