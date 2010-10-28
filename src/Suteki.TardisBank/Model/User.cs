@@ -23,7 +23,7 @@ namespace Suteki.TardisBank.Model
 
         public static string UserIdFromUserName(string userName)
         {
-            return string.Format("users/{0}", userName);
+            return string.Format(ResourceMessages.FormatUserId, userName);
         }
 
         public void SendMessage(string text)
@@ -37,7 +37,7 @@ namespace Suteki.TardisBank.Model
             var message = Messages.SingleOrDefault(x => x.Id == messageId);
             if (message == null)
             {
-                throw new TardisBankException("No message with Id {0} found for user '{1}'", messageId, UserName);
+                throw new TardisBankException(ResourceMessages.FormatNoMessageWithIdForUser, messageId, UserName);
             }
             message.Read();
         }

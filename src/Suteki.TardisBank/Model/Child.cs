@@ -23,27 +23,27 @@ namespace Suteki.TardisBank.Model
         {
             if (parent == null)
             {
-                throw new ArgumentNullException("parent");
+                throw new ArgumentNullException(ResourceMessages.MissingParentParameter);
             }
             if (description == null)
             {
-                throw new ArgumentNullException("description");
+                throw new ArgumentNullException(ResourceMessages.MissingDescriptionParameter);
             }
 
             if (!parent.HasChild(this))
             {
-                throw new CashWithdrawException("Not Your Parent");
+                throw new CashWithdrawException(ResourceMessages.NotYourParent);
             }
 
             if (amount > Account.Balance)
             {
                 throw new CashWithdrawException(string.Format(
-                    "You can not withdraw {0} because you only have {1} in your account", 
+                    ResourceMessages.FormatCanNotWithdraw, 
                     amount,
                     Account.Balance));
             }
 
-            parent.SendMessage(string.Format("{0} would like to withdraw {1}", Name, amount));
+            parent.SendMessage(string.Format(ResourceMessages.FormatWouldLikeToWithdraw, Name, amount));
             Account.AddTransaction(description, -amount);
         }
     }

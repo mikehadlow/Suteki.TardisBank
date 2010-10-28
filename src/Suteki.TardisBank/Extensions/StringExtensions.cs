@@ -47,11 +47,6 @@ namespace Suteki.TardisBank.Extensions
             return DeCamel(text).Replace("_", " ");
         }
 
-        public static void PrettyTest()
-        {
-            Console.WriteLine("hello_worldIAmYourNemesis".Pretty());
-        }
-
         /// <summary>
         /// turns HelloWorld into Hello World
         /// </summary>
@@ -60,11 +55,6 @@ namespace Suteki.TardisBank.Extensions
         public static string DeCamel(this string text)
         {
             return Regex.Replace(text, @"([A-Z])", @" $&").Trim();
-        }
-
-        public static void DeCamelTest()
-        {
-            Console.WriteLine("HelloWorldIAmYourNemesis".DeCamel());
         }
     }
 }

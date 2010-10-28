@@ -69,6 +69,7 @@
   <ItemGroup>
     <Compile Include="Controllers\HomeControllerTests.cs" />
     <Compile Include="Db\LocalClientTest.cs" />
+    <Compile Include="Extensions\StringExtensionsTests.cs" />
     <Compile Include="Helpers\ActionResultExtensions.cs" />
     <Compile Include="Model\ChildTests.cs" />
     <Compile Include="Model\MakePaymentTests.cs" />

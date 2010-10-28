@@ -22,14 +22,14 @@ namespace Suteki.TardisBank.Model
 
         public void MakePaymentTo(Child child, decimal amount)
         {
-            MakePaymentTo(child, amount, string.Format("Payment from {0}", Name));
+            MakePaymentTo(child, amount, string.Format(ResourceMessages.FormatPaymentFrom, Name));
         }
 
         public void MakePaymentTo(Child child, decimal amount, string description)
         {
             if (!HasChild(child))
             {
-                throw new TardisBankException("{0} is not a child of {1}", child.Name, Name);
+                throw new TardisBankException(ResourceMessages.FormatIsNotAChildOf, child.Name, Name);
             }
             child.ReceivePayment(amount, description);
         }
