@@ -70,6 +70,10 @@ td
 {
     padding: 10px 5px;
 }
+td.money
+{
+    text-align: right;
+}
 
 /* Form */
 input

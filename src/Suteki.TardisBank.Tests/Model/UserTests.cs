@@ -49,7 +49,7 @@ namespace Suteki.TardisBank.Tests.Model
 
             using (var session = store.OpenSession())
             {
-                var users = session.LuceneQuery<User>().WaitForNonStaleResults().ToArray();
+                var users = session.Query<User>().ToArray();
 
                 users.Length.ShouldEqual(5);
 

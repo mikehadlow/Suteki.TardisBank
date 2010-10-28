@@ -17,7 +17,7 @@
             <th>Due</th>
             <th>Interval</th>
             <th>Description</th>
-            <th>Amount</th>
+            <th class="money">Amount</th>
             <th>&nbsp;</th>
         </tr>
     </thead>
@@ -27,7 +27,7 @@
             <td>@schedule.NextRun.ToShortDateString()</td>
             <td>@schedule.Interval</td>
             <td>@schedule.Description</td>
-            <td>@schedule.Amount.ToString("0.00")</td>
+            <td class="money">@schedule.Amount.ToString("0.00")</td>
             <td>@Html.ActionLink("Delete", "RemoveSchedule", "Schedule", new { id = Model.Id, scheduleId = schedule.Id }, null)</td>
         </tr>
     </tbody>
@@ -44,7 +44,7 @@
         <tr>
             <th>Date</th>
             <th>Description</th>
-            <th>Amount</th>
+            <th class="money">Amount</th>
         </tr>
     </thead>
 @foreach(var transaction in Model.Account.Transactions.Reverse()) {
@@ -52,7 +52,7 @@
         <tr>
             <td>@transaction.Date.ToShortDateString()</td>
             <td>@transaction.Description</td>
-            <td>@transaction.Amount.ToString("0.00")</td>
+            <td class="money">@transaction.Amount.ToString("0.00")</td>
         </tr>
     </tbody>
 }

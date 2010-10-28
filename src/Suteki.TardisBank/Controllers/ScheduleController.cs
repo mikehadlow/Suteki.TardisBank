@@ -23,11 +23,12 @@ namespace Suteki.TardisBank.Controllers
             var child = userService.GetUserByUserName(id) as Child;
             if (userService.IsNotChildOfCurrentUser(child)) return StatusCode.NotFound;
 
+            // give the user some defaults
             var addScheduleViewModel = new AddScheduleViewModel
             {
                 ChildId = child.Id,
-                Amount = 0,
-                Description = "",
+                Amount = 1.0M,
+                Description = "Pocket Money",
                 Interval = Interval.Week,
                 StartDate = DateTime.Now
             };

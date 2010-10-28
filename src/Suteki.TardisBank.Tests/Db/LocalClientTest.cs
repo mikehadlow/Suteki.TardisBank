@@ -1,30 +1,16 @@
-using System.IO;
-using System.Reflection;
 using Raven.Client.Document;
-using Raven.Database;
+using Raven.Client.Client;
 using Suteki.TardisBank.Model;
 
 namespace Suteki.TardisBank.Tests.Db
 {
     public abstract class LocalClientTest
     {
-        private string path;
-
         protected DocumentStore NewDocumentStore()
         {
-            path = Path.GetDirectoryName(Assembly.GetExecutingAssembly().CodeBase);
-            path = Path.Combine(path, "TestDb").Substring(6);
-
-            if (Directory.Exists(path))
-                Directory.Delete(path, true);
-
-            var documentStore = new DocumentStore
+            var documentStore = new EmbeddablDocumentStore()
             {
-                Configuration = new RavenConfiguration
-                {
-                    DataDirectory = path,
-                    RunInUnreliableYetFastModeThatIsNotSuitableForProduction = true
-                },
+                RunInMemory = true,
                 Conventions =
                 {
                     FindTypeTagName = type => typeof(User).IsAssignableFrom(type) ? "users" : null

@@ -1,6 +1,8 @@
-﻿<ul id="menu">
+﻿@model Parent
+
+<ul id="menu">
     <li>@Html.ActionLink("Home", "Index", "Home")</li>
-    <li>@Html.ActionLink("My Messages", "Messages", "User")</li>
-    <li>@Html.ActionLink("Children", "Index", "Child")</li>
+    <li>@Html.ActionLink("My Messages (" + Model.Messages.Where(x => !x.HasBeenRead).Count() + ")", "Messages", "User")</li>
+    <li>@Html.ActionLink("Children (" + Model.Children.Count + ")", "Index", "Child")</li>
 </ul>
 

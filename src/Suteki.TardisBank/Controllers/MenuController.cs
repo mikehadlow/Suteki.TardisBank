@@ -19,8 +19,8 @@ namespace Suteki.TardisBank.Controllers
             var user = userService.CurrentUser;
 
             if (user == null) return View("GuestMenu");
-            if (user is Parent) return View("ParentMenu");
-            if (user is Child) return View("ChildMenu");
+            if (user is Parent) return View("ParentMenu", user as Parent);
+            if (user is Child) return View("ChildMenu", user as Child);
 
             throw new TardisBankException("Unknown User type");
         }
