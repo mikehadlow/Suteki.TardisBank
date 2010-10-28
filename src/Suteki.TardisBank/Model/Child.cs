@@ -39,8 +39,8 @@ namespace Suteki.TardisBank.Model
             {
                 throw new CashWithdrawException(string.Format(
                     "You can not withdraw {0} because you only have {1} in your account", 
-                    amount,
-                    Account.Balance));
+                    amount.ToString("0.00"),
+                    Account.Balance.ToString("0.00")));
             }
 
             parent.SendMessage(string.Format("{0} would like to withdraw {1}", Name, amount));

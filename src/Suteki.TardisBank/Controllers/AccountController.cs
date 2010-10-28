@@ -50,7 +50,7 @@ namespace Suteki.TardisBank.Controllers
 
             if (makePaymentViewModel.Amount == 0M)
             {
-                ModelState.AddModelError("Amount", "Your kid's not going to like a payment for zero. Try again.");
+                ModelState.AddModelError("Amount", "A payment of zero? That's not nice.");
                 return View("MakePayment", makePaymentViewModel);
             }
 
