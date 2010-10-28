@@ -11,18 +11,22 @@
         <tr>
             <td><label for="Email">Your Email</label></td>
             <td>@Html.TextBoxFor(x => x.Email)</td>
+            <td>&nbsp;</td>
         </tr>
         <tr>
             <td><label for="Name">Your Name</label></td>
             <td>@Html.TextBoxFor(x => x.Name)</td>
+            <td>This is just for display, 'Mum' or 'Dad' is fine.</td>
         </tr>
         <tr>
             <td><label for="Password">Your Password</label></td>
             <td>@Html.PasswordFor(x => x.Password)</td>
+            <td>&nbsp;</td>
         </tr>
         <tr>
             <td>&nbsp;</td>
             <td><input type="submit" value="Register" /></td>
+            <td>&nbsp;</td>
         </tr>
     </table>
     @{ Html.EndForm(); }

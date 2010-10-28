@@ -133,7 +133,14 @@ namespace Suteki.TardisBank.Controllers
                     if(hashedPassword == user.Password)
                     {
                         formsAuthenticationService.SetAuthCookie(user.UserName, false);
-                        return RedirectToAction("Index", "Home");
+                        if (user is Child)
+                        {
+                            return RedirectToAction("ChildView", "Account");
+                        }
+                        else
+                        {
+                            return RedirectToAction("Messages", "User");
+                        }
                     }
                     ModelState.AddModelError("Password", "Invalid Password");
                 }

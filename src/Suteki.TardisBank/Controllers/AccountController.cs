@@ -43,10 +43,15 @@ namespace Suteki.TardisBank.Controllers
         public ActionResult MakePayment(MakePaymentViewModel makePaymentViewModel)
         {
             if (!ModelState.IsValid) return View("MakePayment", makePaymentViewModel);
-
             if (makePaymentViewModel == null)
             {
                 throw new ArgumentNullException("makePaymentViewModel");
+            }
+
+            if (makePaymentViewModel.Amount == 0M)
+            {
+                ModelState.AddModelError("Amount", "Your kid's not going to like a payment for zero. Try again.");
+                return View("MakePayment", makePaymentViewModel);
             }
 
             var parent = userService.CurrentUser as Parent;
@@ -101,12 +106,17 @@ namespace Suteki.TardisBank.Controllers
         [HttpPost, UnitOfWork]
         public ActionResult WithdrawCash(WithdrawCashViewModel withdrawCashViewModel)
         {
+            if (!ModelState.IsValid) return View("WithdrawCash", withdrawCashViewModel);
             if (withdrawCashViewModel == null)
             {
                 throw new ArgumentNullException("withdrawCashViewModel");
             }
 
-            if (!ModelState.IsValid) return View("WithdrawCash", withdrawCashViewModel);
+            if (withdrawCashViewModel.Amount == 0M)
+            {
+                ModelState.AddModelError("Amount", "There's no point in asking for zero cash.");
+                return View("WithdrawCash", withdrawCashViewModel);
+            }
 
             var child = userService.CurrentUser as Child;
             if (child == null)
