@@ -13,6 +13,9 @@ namespace Suteki.TardisBank.Services
         User GetUserByUserName(string userName);
         void SaveUser(User user);
         IEnumerable<Child> GetChildrenOf(Parent parent);
+
+        bool AreNullOrNotRelated(Parent parent, Child child);
+        bool IsNotChildOfCurrentUser(Child child);
     }
 
     public class UserService : IUserService
@@ -75,6 +78,24 @@ namespace Suteki.TardisBank.Services
 
             var childIds = parent.Children.Select(x => x.ChildId).ToArray();
             return session.Load<Child>(childIds).AsEnumerable();
+        }
+
+        public bool AreNullOrNotRelated(Parent parent, Child child)
+        {
+            if (parent == null || child == null) return true;
+
+            if (!parent.HasChild(child))
+            {
+                throw new TardisBankException("'{0}' is not a child of '{1}'", child.UserName, parent.UserName);
+            }
+
+            return false;
+        }
+
+        public bool IsNotChildOfCurrentUser(Child child)
+        {
+            var parent = CurrentUser as Parent;
+            return (child == null) || (parent == null) || (!parent.HasChild(child));
         }
     }
 }

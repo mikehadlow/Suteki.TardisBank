@@ -28,7 +28,8 @@ namespace Suteki.TardisBank.Model
 
         public void AddPaymentSchedule(DateTime startDate, Interval interval, decimal amount, string description)
         {
-            PaymentSchedules.Add(new PaymentSchedule(startDate, interval, amount, description));
+            var nextId = PaymentSchedules.Any() ? PaymentSchedules.Max(x => x.Id) + 1 : 0;
+            PaymentSchedules.Add(new PaymentSchedule(nextId, startDate, interval, amount, description));
         }
 
         public void TriggerScheduledPayments(DateTime now)
@@ -39,6 +40,14 @@ namespace Suteki.TardisBank.Model
                 AddTransaction(overdueSchedule.Description, overdueSchedule.Amount);
                 overdueSchedule.CalculateNextRunDate();
             }
+        }
+
+        public void RemovePaymentSchedule(int paymentScheduleId)
+        {
+            var scheduleToRemove = PaymentSchedules.SingleOrDefault(x => x.Id == paymentScheduleId);
+            if (scheduleToRemove == null) return;
+
+            PaymentSchedules.Remove(scheduleToRemove);
         }
     }
 }

@@ -11,8 +11,11 @@
         <td>@child.Name</td>
         <td>@Html.ActionLink("Make a Payment", "MakePayment", "Account", new { id = child.ChildId }, null)</td>
         <td>@Html.ActionLink("View Account", "ParentView", "Account", new { id = child.ChildId }, null)</td>
+        <td>@Html.ActionLink("Set up pocket money schedule", "AddSchedule", "Schedule", new { id = child.ChildId }, null)</td>
     </tr>
 }
 </table>
-
-
+<br />
+<p>
+    @Html.ActionLink("Add Another Child", "AddChild", "User")
+</p>

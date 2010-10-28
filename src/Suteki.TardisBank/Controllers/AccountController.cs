@@ -28,7 +28,7 @@ namespace Suteki.TardisBank.Controllers
             var parent = userService.CurrentUser as Parent;
             var child = userService.GetUserByUserName(id) as Child;
 
-            if (AreNullOrInvalid(parent, child)) return StatusCode.NotFound;
+            if (userService.AreNullOrNotRelated(parent, child)) return StatusCode.NotFound;
 
             return View("MakePayment", new MakePaymentViewModel
             {
@@ -52,24 +52,13 @@ namespace Suteki.TardisBank.Controllers
             var parent = userService.CurrentUser as Parent;
             var child = userService.GetUserByUserName(makePaymentViewModel.ChildId) as Child;
 
-            if (AreNullOrInvalid(parent, child)) return StatusCode.NotFound;
+            if (userService.AreNullOrNotRelated(parent, child)) return StatusCode.NotFound;
 
             parent.MakePaymentTo(child, makePaymentViewModel.Amount, makePaymentViewModel.Description);
 
             return View("PaymentConfirmation", makePaymentViewModel);
         }
 
-        static bool AreNullOrInvalid(Parent parent, Child child)
-        {
-            if (parent == null || child == null) return true;
-
-            if (!parent.HasChild(child))
-            {
-                throw new TardisBankException("'{0}' is not a child of '{1}'", child.UserName, parent.UserName);
-            }
-
-            return false;
-        }
 
         [HttpGet]
         public ActionResult ParentView(string id)
@@ -77,9 +66,9 @@ namespace Suteki.TardisBank.Controllers
             var parent = userService.CurrentUser as Parent;
             var child = userService.GetUserByUserName(id) as Child;
 
-            if (AreNullOrInvalid(parent, child)) return StatusCode.NotFound;
+            if (userService.AreNullOrNotRelated(parent, child)) return StatusCode.NotFound;
 
-            return View("Summary", child.Account);
+            return View("Summary", child);
         }
 
         [HttpGet]
@@ -90,7 +79,7 @@ namespace Suteki.TardisBank.Controllers
             {
                 return StatusCode.NotFound;
             }
-            return View("Summary", child.Account);
+            return View("Summary", child);
         }
 
         [HttpGet]

@@ -1,0 +1,46 @@
+﻿@model AddScheduleViewModel
+
+@{
+    Layout = "~/Views/Shared/SiteLayout.cshtml";
+}
+<h2>Add Schedule</h2>
+<p>This is where you set up you child's regular pocket money payments.</p>
+<p>@Html.ValidationSummary()</p>
+<div>
+    @{ Html.BeginForm(); }
+    
+    @Html.HiddenFor(x => x.ChildId)
+
+    <table>
+        <tr>
+            <td><label for="Description">A description for the payment</label></td>
+            <td>@Html.TextBoxFor(x => x.Description)</td>
+        </tr>
+        <tr>
+            <td><label for="Amount">The regular amount you want to pay</label></td>
+            <td>@Html.TextBoxFor(x => x.Amount)</td>
+        </tr>
+        <tr>
+            <td><label for="Interval">How often do you want to pay it</label></td>
+            <td>
+                <select id="Interval" name="Interval">
+                    <option value="0">&lt;select one&gt;</option>
+                    <option value="1">Daily</option>
+                    <option value="2">Weekly</option>
+                    <option value="3">Monthly</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td><label for="StartDate">When do you want the payments to start</label></td>
+            <td>@Html.TextBoxFor(x => x.StartDate)</td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td><input type="submit" value="Setup Schdule" /></td>
+        </tr>
+    </table>
+    @{ Html.EndForm(); }
+</div>
+
+

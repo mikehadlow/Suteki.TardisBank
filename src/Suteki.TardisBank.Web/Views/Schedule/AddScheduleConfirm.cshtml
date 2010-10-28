@@ -1,0 +1,11 @@
+﻿@model AddScheduleViewModel
+
+@{
+    Layout = "~/Views/Shared/SiteLayout.cshtml";
+}
+
+<h2>Schedule Created</h2>
+<p>Your child's regular pocket money schedule has been created.</p>
+<p>The first payment of @Model.Amount.ToString("0.00") will be paid on @Model.StartDate.ToLongDateString(), and then every @Model.Interval after that.</p>
+<p>@Html.ActionLink("Return to your child's account", "ParentView", "Account", new { id = Model.ChildId }, null)</p>
+

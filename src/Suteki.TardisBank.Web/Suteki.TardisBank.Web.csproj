@@ -128,6 +128,8 @@
     <None Include="Views\Menu\ParentMenu.cshtml" />
     <None Include="Views\Openid\Index.cshtml" />
     <None Include="Views\Openid\Login.cshtml" />
+    <None Include="Views\Schedule\AddSchedule.cshtml" />
+    <None Include="Views\Schedule\AddScheduleConfirm.cshtml" />
     <None Include="Views\Shared\SiteLayout.cshtml" />
     <None Include="Views\User\AddChild.cshtml" />
     <None Include="Views\User\Confirm.cshtml" />

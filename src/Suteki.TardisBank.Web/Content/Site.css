@@ -68,7 +68,38 @@ th
 }
 td
 {
-    padding:5px 5px 5px 5px;
+    padding: 10px 5px;
+}
+
+/* Form */
+input
+{
+    font: 100% Arial;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    border-style: inset;
+    border-width: 2px;
+}
+
+input[type=submit]
+{
+    color: #ccc;
+    background-color: #333;
+    padding: 7px;
+    text-decoration:none;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    border-style: none;
+    border-width: 0;
+}
+
+select
+{
+    font: 100% Arial;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    border-style: inset;
+    border-width: 2px;
 }
 
 /* Styles for validation helpers

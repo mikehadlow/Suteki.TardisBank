@@ -2,8 +2,8 @@ namespace Suteki.TardisBank.Model
 {
     public enum Interval
     {
-        Day,
-        Week,
-        Month
+        Day = 1,
+        Week = 2,
+        Month = 3
     }
 }
