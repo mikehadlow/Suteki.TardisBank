@@ -1,0 +1,25 @@
+﻿@model ForgottenPasswordViewModel
+
+@{
+    Layout = "~/Views/Shared/SiteLayout.cshtml";
+}
+
+<h2>Reset Your Password</h2>
+<p>If you are a child, enter your user name below. If you are a parent, enter your email address.</p>
+<p>@Html.ValidationSummary()</p>
+<div>
+    @{ Html.BeginForm(); }
+    <table>
+        <tr>
+            <td><label for="UserName">User Name (or Email for parents)</label></td>
+            <td>@Html.TextBoxFor(x => x.UserName)</td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td><input type="submit" value="Send me a new password" /></td>
+        </tr>
+    </table>
+    @{ Html.EndForm(); }
+</div>
+
+

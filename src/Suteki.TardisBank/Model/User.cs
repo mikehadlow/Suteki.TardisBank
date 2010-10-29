@@ -48,5 +48,10 @@ namespace Suteki.TardisBank.Model
         {
             IsActive = true;
         }
+
+        public void ResetPassword(string newPassword)
+        {
+            Password = newPassword;
+        }
     }
 }

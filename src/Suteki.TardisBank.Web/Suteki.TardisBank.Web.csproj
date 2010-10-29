@@ -113,6 +113,9 @@
     <None Include="Views\Menu\ParentMenu.cshtml" />
     <None Include="Views\Openid\Index.cshtml" />
     <None Include="Views\Openid\Login.cshtml" />
+    <None Include="Views\Password\ChildConfirm.cshtml" />
+    <None Include="Views\Password\Forgot.cshtml" />
+    <None Include="Views\Password\ParentConfirm.cshtml" />
     <None Include="Views\Schedule\AddSchedule.cshtml" />
     <None Include="Views\Schedule\AddScheduleConfirm.cshtml" />
     <None Include="Views\Shared\SiteLayout.cshtml" />

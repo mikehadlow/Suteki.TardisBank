@@ -5,7 +5,7 @@
 }
 <h2>Log In</h2>
 <p>@Html.ValidationSummary()</p>
-<div>
+<div class="grid_8">
     @{ Html.BeginForm(); }
     <table>
         <tr>
@@ -23,3 +23,8 @@
     </table>
     @{ Html.EndForm(); }
 </div>
+<div class="grid_3">
+    <p>Forgotten your password? Just click this link...</p>
+    @Html.ActionLink("I've forgotten my password", "Forgot", "Password")
+</div>
+
