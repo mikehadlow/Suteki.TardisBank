@@ -45,7 +45,7 @@ namespace Suteki.TardisBank.Controllers
         [HttpPost, UnitOfWork]
         public ActionResult Register(RegistrationViewModel registrationViewModel)
         {
-            return RegisterInternal(registrationViewModel,
+            return RegisterInternal(registrationViewModel, "Sorry, that email address has already been registered.",
                 createUser: (pwd) => new Parent(registrationViewModel.Name, registrationViewModel.Email, pwd).Initialise(),
                 confirmAction: () => RedirectToAction("Confirm"),
                 invalidModelStateAction: () => View("Register", registrationViewModel)
@@ -53,7 +53,8 @@ namespace Suteki.TardisBank.Controllers
         }
 
         ActionResult RegisterInternal(
-            RegistrationViewModel registrationViewModel, 
+            RegistrationViewModel registrationViewModel,
+            string usernameTakenMessage,
             Func<string, User> createUser,
             Func<ActionResult> confirmAction, 
             Func<ActionResult> invalidModelStateAction,
@@ -83,6 +84,14 @@ namespace Suteki.TardisBank.Controllers
                     registrationViewModel.Password);
 
                 var user = createUser(hashedPassword);
+
+                var conflictedUser = userService.GetUserByUserName(user.UserName);
+                if (conflictedUser != null)
+                {
+                    ModelState.AddModelError("Email", usernameTakenMessage);
+                    return invalidModelStateAction();
+                }
+
                 userService.SaveUser(user);
 
                 if (afterUserCreated != null)
@@ -203,7 +212,7 @@ namespace Suteki.TardisBank.Controllers
                 return StatusCode.NotFound;
             }
 
-            return RegisterInternal(registrationViewModel,
+            return RegisterInternal(registrationViewModel, "Sorry, that user name has already been taken",
                 createUser: (pwd) => parent.CreateChild(registrationViewModel.Name, registrationViewModel.Email, pwd),
                 confirmAction: () => RedirectToAction("Index", "Child"),
                 invalidModelStateAction: () => View("AddChild", registrationViewModel)
