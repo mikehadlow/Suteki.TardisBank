@@ -8,5 +8,10 @@ namespace Suteki.TardisBank.Controllers
         {
             get { return new HttpStatusCodeResult(404); }
         }
+
+        public static ActionResult Ok
+        {
+            get { return new HttpStatusCodeResult(200); }
+        }
     }
 }

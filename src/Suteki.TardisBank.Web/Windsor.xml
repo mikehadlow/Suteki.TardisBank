@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<configuration>
+  <components>
+
+    <component id="TardisConfiguration">
+      <parameters>
+        <!-- 
+        this is the key to put in the querystring to run the scheduled task process 
+        e.g. http://example.com/ScheduleRunner/Execute/<ScheduleKey_value>
+        -->
+        <ScheduleKey>runit</ScheduleKey>
+      </parameters>
+    </component>
+
+  </components>
+</configuration>

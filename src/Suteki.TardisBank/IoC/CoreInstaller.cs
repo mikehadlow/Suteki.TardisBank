@@ -10,7 +10,8 @@ namespace Suteki.TardisBank.IoC
         public void Install(IWindsorContainer container, IConfigurationStore store)
         {
             container.Register(
-                    Component.For<IControllerFactory>().ImplementedBy<WindsorControllerFactory>()
+                    Component.For<IControllerFactory>().ImplementedBy<WindsorControllerFactory>().LifeStyle.Singleton,
+                    Component.For<TardisConfiguration>().Named("TardisConfiguration").LifeStyle.Singleton
                 );
         }
     }

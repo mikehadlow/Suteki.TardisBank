@@ -4,6 +4,7 @@ using System.Linq;
 using NUnit.Framework;
 using Raven.Client;
 using Suteki.TardisBank.Model;
+using Suteki.TardisBank.Services;
 using Suteki.TardisBank.Tests.Db;
 
 namespace Suteki.TardisBank.Tests.Model
@@ -21,11 +22,12 @@ namespace Suteki.TardisBank.Tests.Model
             parent = new Parent("Dad", "mike@mike.com", "xxx");
         }
 
-        [Test, Ignore("Need to work out how to do this ...")]
+        [Test]
         public void Should_be_able_to_query_all_pending_scheduled_payments()
         {
             var someDate = new DateTime(2010, 4, 5);
 
+            // create some children with accounts and schedules
             using(var session = store.OpenSession())
             {
                 session.Store(CreateChildWithSchedule("one", 1M, someDate.AddDays(-2)));
@@ -33,19 +35,32 @@ namespace Suteki.TardisBank.Tests.Model
                 session.Store(CreateChildWithSchedule("three", 3M, someDate));
                 session.Store(CreateChildWithSchedule("four", 4M, someDate.AddDays(1)));
                 session.Store(CreateChildWithSchedule("five", 5M, someDate.AddDays(2)));
+                session.SaveChanges();
             }
 
+            // perform the update
             using(var session = store.OpenSession())
             {
-                var results = session.Query<Child>("pendingScheduledPayments")
-                    .Where(child => child.Account.PaymentSchedules.Where(s => s.NextRun <= someDate).Any());
+                ISchedulerService schedulerService = new SchedulerService(session);
+                schedulerService.ExecuteUpdates(someDate);
+                session.SaveChanges();
+            }
 
-                foreach (var child in results)
-                {
-                    Console.WriteLine("{0} - {1}",
-                        child.Name,
-                        child.Account.PaymentSchedules[0].NextRun);
-                }
+            // check results
+            using(var session = store.OpenSession())
+            {
+                var results = session.Query<Child>().ToList();
+
+                results.Count().ShouldEqual(5);
+
+                results.Single(x => x.Name == "one").Account.PaymentSchedules[0].NextRun.ShouldEqual(someDate.AddDays(5));
+                results.Single(x => x.Name == "two").Account.PaymentSchedules[0].NextRun.ShouldEqual(someDate.AddDays(6));
+                results.Single(x => x.Name == "three").Account.PaymentSchedules[0].NextRun.ShouldEqual(someDate.AddDays(7));
+                results.Single(x => x.Name == "four").Account.PaymentSchedules[0].NextRun.ShouldEqual(someDate.AddDays(1));
+                results.Single(x => x.Name == "five").Account.PaymentSchedules[0].NextRun.ShouldEqual(someDate.AddDays(2));
+
+                results.Single(x => x.Name == "one").Account.Transactions.Count.ShouldEqual(1);
+                results.Single(x => x.Name == "one").Account.Transactions[0].Amount.ShouldEqual(1M);
             }
         }
 
