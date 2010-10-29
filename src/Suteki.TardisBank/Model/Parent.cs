@@ -13,7 +13,6 @@ namespace Suteki.TardisBank.Model
         public Parent(string name, string userName, string password) : base(name, userName, password)
         {
             Children = new List<ChildProxy>();
-            Console.WriteLine("Parent Constructor Called");
         }
 
         // should be called when parent is first created.

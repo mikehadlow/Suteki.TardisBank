@@ -4,6 +4,7 @@
     Layout = "~/Views/Shared/SiteLayout.cshtml";
 }
 <h2>Add a Child Account</h2>
+<p>Complete the form below to create an account for your child.</p>
 <p>@Html.ValidationSummary()</p>
 <div>
     @{ Html.BeginForm(); }
@@ -11,18 +12,22 @@
         <tr>
             <td><label for="Email">Child's Username</label></td>
             <td>@Html.TextBoxFor(x => x.Email)</td>
+            <td>This needs to be unique, for example 'tomrobinson04'</td>
         </tr>
         <tr>
             <td><label for="Name">Child's First Name</label></td>
             <td>@Html.TextBoxFor(x => x.Name)</td>
+            <td>This is just for display, for example 'Tom'</td>
         </tr>
         <tr>
             <td><label for="Password">Child's Password</label></td>
             <td>@Html.PasswordFor(x => x.Password)</td>
+            <td>So that your child can sign in.</td>
         </tr>
         <tr>
             <td>&nbsp;</td>
-            <td><input type="submit" value="Create Account" /></td>
+            <td><input type="submit" value="Create Your Child's Account" /></td>
+            <td>&nbsp;</td>
         </tr>
     </table>
     @{ Html.EndForm(); }

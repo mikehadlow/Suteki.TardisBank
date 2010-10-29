@@ -111,7 +111,6 @@ namespace Suteki.TardisBank.Controllers
                 return View("ActivationFailed");
             }
             user.Activate();
-            formsAuthenticationService.SetAuthCookie(user.UserName, false);
             return View("ActivateConfirm");
         }
 
@@ -160,7 +159,7 @@ namespace Suteki.TardisBank.Controllers
                         }
                         else
                         {
-                            return RedirectToAction("Messages", "User");
+                            return RedirectToAction("Index", "Child");
                         }
                     }
                     ModelState.AddModelError("Password", "Invalid Password");

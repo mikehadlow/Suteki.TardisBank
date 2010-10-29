@@ -3,7 +3,10 @@
 @{
     Layout = "~/Views/Shared/SiteLayout.cshtml";
 }
-<h2>Register</h2>
+<h2>Parent Sign Up</h2>
+<p>Parents, please sign up for Tardis Bank by completing this form. We will then send you an email with a link to activate your account.</p>
+<p>After you have signed up, you can create accounts for all your kids.</p>
+<p><strong>Kids,</strong> you have to ask a parent to sign up and create an account for you. You can't sign up here by yourself. After all, you need someone to actually give you the money.</p>
 <p>@Html.ValidationSummary()</p>
 <div>
     @{ Html.BeginForm(); }
@@ -11,7 +14,7 @@
         <tr>
             <td><label for="Email">Your Email</label></td>
             <td>@Html.TextBoxFor(x => x.Email)</td>
-            <td>&nbsp;</td>
+            <td>This must be a valid email address so that we can send you the activation link</td>
         </tr>
         <tr>
             <td><label for="Name">Your Name</label></td>
@@ -25,7 +28,7 @@
         </tr>
         <tr>
             <td>&nbsp;</td>
-            <td><input type="submit" value="Register" /></td>
+            <td><input type="submit" value="Sign Me Up!" /></td>
             <td>&nbsp;</td>
         </tr>
     </table>

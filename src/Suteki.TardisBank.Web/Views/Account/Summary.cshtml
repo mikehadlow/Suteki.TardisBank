@@ -4,7 +4,7 @@
     Layout = "~/Views/Shared/SiteLayout.cshtml";
 }
 
-<h2>Account Summary</h2>
+<h2>@Model.Name's Account Summary</h2>
 <p>Current Balance: <strong>@Model.Account.Balance.ToString("0.00")</strong></p>
 
 <h3>Pocket Money Schedule</h3>
