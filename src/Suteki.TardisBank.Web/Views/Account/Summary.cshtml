@@ -5,7 +5,7 @@
 }
 
 <h2>Account Summary</h2>
-<p>Current Balance: @Model.Account.Balance</p>
+<p>Current Balance: <strong>@Model.Account.Balance.ToString("0.00")</strong></p>
 
 <h3>Pocket Money Schedule</h3>
 @if(Model.Account.PaymentSchedules.Count == 0) {

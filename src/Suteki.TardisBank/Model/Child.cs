@@ -39,8 +39,8 @@ namespace Suteki.TardisBank.Model
             {
                 throw new CashWithdrawException(string.Format(
                     ResourceMessages.FormatCanNotWithdraw, 
-                    amount,
-                    Account.Balance));
+                     amount.ToString("0.00"),
+                    Account.Balance.ToString("0.00")));
             }
 
             parent.SendMessage(string.Format(ResourceMessages.FormatWouldLikeToWithdraw, Name, amount));
