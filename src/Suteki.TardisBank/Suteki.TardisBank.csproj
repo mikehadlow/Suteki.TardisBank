@@ -91,6 +91,7 @@
     <Compile Include="Model\User.cs" />
     <Compile Include="Mvc\UnitOfWorkAttribute.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\EmailService.cs" />
     <Compile Include="Services\FormsAuthenticationService.cs" />
     <Compile Include="Services\HttpContextService.cs" />
     <Compile Include="Services\OpenIdService.cs" />
