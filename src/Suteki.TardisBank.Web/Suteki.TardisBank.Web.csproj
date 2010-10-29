@@ -132,6 +132,8 @@
     <None Include="Views\Schedule\AddSchedule.cshtml" />
     <None Include="Views\Schedule\AddScheduleConfirm.cshtml" />
     <None Include="Views\Shared\SiteLayout.cshtml" />
+    <None Include="Views\User\ActivateConfirm.cshtml" />
+    <None Include="Views\User\ActivationFailed.cshtml" />
     <None Include="Views\User\AddChild.cshtml" />
     <None Include="Views\User\Confirm.cshtml" />
     <None Include="Views\User\Index.cshtml" />

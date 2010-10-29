@@ -9,6 +9,7 @@ namespace Suteki.TardisBank.Model
         {
             ParentId = parentId;
             Account = new Account();
+            IsActive = true;
         }
 
         public string ParentId { get; set; }

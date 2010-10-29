@@ -76,6 +76,7 @@
     <Compile Include="Model\ParentTests.cs" />
     <Compile Include="Model\PaymentSchedulingQueryTests.cs" />
     <Compile Include="Model\PaymentSchedulingTests.cs" />
+    <Compile Include="Model\UserActivationTests.cs" />
     <Compile Include="Model\UserTests.cs" />
     <Compile Include="Model\WithdrawlCashTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

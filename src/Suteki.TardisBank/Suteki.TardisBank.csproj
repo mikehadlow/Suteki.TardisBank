@@ -74,9 +74,15 @@
     <Compile Include="Controllers\ScheduleRunnerController.cs" />
     <Compile Include="Controllers\StatusCode.cs" />
     <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Events\DomainEvent.cs" />
+    <Compile Include="Events\IDomainEvent.cs" />
+    <Compile Include="Events\NewParentCreatedEvent.cs" />
+    <Compile Include="Handlers\IHandle.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
+    <Compile Include="Handlers\SendRegistrationEmailHandler.cs" />
     <Compile Include="IoC\ControllersInstaller.cs" />
     <Compile Include="IoC\CoreInstaller.cs" />
+    <Compile Include="IoC\HandlerInstaller.cs" />
     <Compile Include="IoC\RavenInstaller.cs" />
     <Compile Include="IoC\ServicesInstaller.cs" />
     <Compile Include="IoC\TardisConfiguration.cs" />

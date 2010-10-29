@@ -1,6 +1,7 @@
 // ReSharper disable InconsistentNaming
 using NUnit.Framework;
 using Raven.Client;
+using Suteki.TardisBank.Events;
 using Suteki.TardisBank.Model;
 using Suteki.TardisBank.Tests.Db;
 
@@ -46,6 +47,7 @@ namespace Suteki.TardisBank.Tests.Model
         string GetParentId(string name)
         {
             string parentId;
+
             using (var session = store.OpenSession())
             {
                 var parent = new Parent(name: "Mike Hadlow", userName: string.Format("{0}@yahoo.com", name), password: "yyy");

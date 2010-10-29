@@ -12,12 +12,12 @@
 
         <!--if EmailSmtpServer is empty emails just don't get sent-->
         <EmailSmtpServer></EmailSmtpServer>
-        <EmailEnableSsl>false</EmailEnableSsl>
-        <EmailPort>25</EmailPort>
+        <EmailEnableSsl>true</EmailEnableSsl>
+        <EmailPort>587</EmailPort>
         
         <!--if the username or password is blank, default credentials are used.-->
-        <EmailCredentialsUserName></EmailCredentialsUserName>
-        <EmailCredentialsPassword></EmailCredentialsPassword>
+        <EmailCredentialsUserName>____</EmailCredentialsUserName>
+        <EmailCredentialsPassword>____</EmailCredentialsPassword>
       
         <EmailFromAddress>info@tardisbank.com</EmailFromAddress>
 

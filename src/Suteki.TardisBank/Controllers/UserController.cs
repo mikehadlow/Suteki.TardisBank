@@ -46,10 +46,9 @@ namespace Suteki.TardisBank.Controllers
         public ActionResult Register(RegistrationViewModel registrationViewModel)
         {
             return RegisterInternal(registrationViewModel,
-                createUser: (pwd) => new Parent(registrationViewModel.Name, registrationViewModel.Email, pwd),
+                createUser: (pwd) => new Parent(registrationViewModel.Name, registrationViewModel.Email, pwd).Initialise(),
                 confirmAction: () => RedirectToAction("Confirm"),
-                invalidModelStateAction: () => View("Register", registrationViewModel),
-                afterUserCreated: user => formsAuthenticationService.SetAuthCookie(user.UserName, false)
+                invalidModelStateAction: () => View("Register", registrationViewModel)
                 );
         }
 
@@ -102,6 +101,20 @@ namespace Suteki.TardisBank.Controllers
             return View("Confirm");
         }
 
+        [HttpGet, UnitOfWork]
+        public ActionResult Activate(string id)
+        {
+            // id is the activation key
+            var user = userService.GetUserByActivationKey(id);
+            if (user == null)
+            {
+                return View("ActivationFailed");
+            }
+            user.Activate();
+            formsAuthenticationService.SetAuthCookie(user.UserName, false);
+            return View("ActivateConfirm");
+        }
+
         [HttpGet]
         public ActionResult Login()
         {
@@ -126,6 +139,14 @@ namespace Suteki.TardisBank.Controllers
                 var user = userService.GetUserByUserName(loginViewModel.Name);
                 if (user != null)
                 {
+                    if (!user.IsActive)
+                    {
+                        ModelState.AddModelError(
+                            "Name", "Please activate your account first by clicking on the link in your " + 
+                            "activation email.");
+                        return View("Login", loginViewModel);
+                    }
+
                     var hashedPassword = formsAuthenticationService.HashAndSalt(
                         loginViewModel.Name,
                         loginViewModel.Password);
@@ -163,6 +184,13 @@ namespace Suteki.TardisBank.Controllers
         [HttpGet]
         public ActionResult AddChild()
         {
+            var parent = userService.CurrentUser as Parent;
+            if (parent == null)
+            {
+                //throw new TardisBankException("You must be a parent in order to register a Child");
+                return StatusCode.NotFound;
+            }
+
             return View("AddChild", GetRegistrationViewModel());
         }
 

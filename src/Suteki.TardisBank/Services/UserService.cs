@@ -11,6 +11,7 @@ namespace Suteki.TardisBank.Services
         User CurrentUser { get; }
         User GetUser(string userId);
         User GetUserByUserName(string userName);
+        User GetUserByActivationKey(string activationKey);
         void SaveUser(User user);
         IEnumerable<Child> GetChildrenOf(Parent parent);
 
@@ -57,6 +58,16 @@ namespace Suteki.TardisBank.Services
             }
 
             return session.Load<User>(User.UserIdFromUserName(userName));
+        }
+
+        public User GetUserByActivationKey(string activationKey)
+        {
+            if (activationKey == null)
+            {
+                throw new ArgumentNullException("activationKey");
+            }
+
+            return session.Query<Parent>().Where(x => x.ActivationKey == activationKey).SingleOrDefault();
         }
 
         public void SaveUser(User user)

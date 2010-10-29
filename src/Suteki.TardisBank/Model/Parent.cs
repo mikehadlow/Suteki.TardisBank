@@ -1,15 +1,27 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using Suteki.TardisBank.Events;
 
 namespace Suteki.TardisBank.Model
 {
     public class Parent : User
     {
         public IList<ChildProxy> Children { get; private set; }
+        public string ActivationKey { get; private set; }
 
         public Parent(string name, string userName, string password) : base(name, userName, password)
         {
             Children = new List<ChildProxy>();
+            Console.WriteLine("Parent Constructor Called");
+        }
+
+        // should be called when parent is first created.
+        public Parent Initialise()
+        {
+            ActivationKey = Guid.NewGuid().ToString();
+            DomainEvent.Raise(new NewParentCreatedEvent(this));
+            return this;
         }
 
         public Child CreateChild(string name, string userName, string password)
@@ -37,6 +49,12 @@ namespace Suteki.TardisBank.Model
         public bool HasChild(Child child)
         {
             return Children.Any(x => x.ChildId == child.Id);
+        }
+
+        public override void Activate()
+        {
+            ActivationKey = "";
+            base.Activate();
         }
     }
 
