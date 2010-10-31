@@ -1,5 +1,6 @@
 using Raven.Client.Document;
 using Raven.Client.Client;
+using Suteki.TardisBank.IoC;
 using Suteki.TardisBank.Model;
 
 namespace Suteki.TardisBank.Tests.Db
@@ -16,7 +17,7 @@ namespace Suteki.TardisBank.Tests.Db
                     FindTypeTagName = type => typeof(User).IsAssignableFrom(type) ? "users" : null
                 }
             };
-            documentStore.Initialize();
+            RavenInstaller.DoInitialisation(documentStore);
             return documentStore;
         }
     }

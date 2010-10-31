@@ -51,6 +51,7 @@
       <HintPath>..\..\NonPackageLibraries\RavenDb\Client\Raven.Client.Lightweight.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="Microsoft.CSharp" />
@@ -81,6 +82,7 @@
     <Compile Include="Handlers\IHandle.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Handlers\SendRegistrationEmailHandler.cs" />
+    <Compile Include="Indexes\Child_ByPendingSchedule.cs" />
     <Compile Include="IoC\ControllersInstaller.cs" />
     <Compile Include="IoC\CoreInstaller.cs" />
     <Compile Include="IoC\HandlerInstaller.cs" />

@@ -24,9 +24,11 @@ namespace Suteki.TardisBank.Services
         /// </summary>
         public void ExecuteUpdates(DateTime now)
         {
-            var results = session.Query<Child>()
-                .ToList() // just until Raven gets patched. This query is going to be horribly inefficient.
-                .Where(child => child.Account.PaymentSchedules.Any(s => s.NextRun <= now));
+            // query is defined in this class: Suteki.TardisBank.Indexes.Child_ByPendingSchedule
+            var results = session.Advanced
+                .LuceneQuery<Child>("Child/ByPendingSchedule")
+                .WhereLessThanOrEqual("NextRun", now)
+                .WaitForNonStaleResults().ToList();
 
             foreach (var child in results)
             {
