@@ -17,7 +17,7 @@
         
         <!--if the username or password is blank, default credentials are used.-->
         <EmailCredentialsUserName>info@tardisbank.com</EmailCredentialsUserName>
-        <EmailCredentialsPassword>____</EmailCredentialsPassword>
+        <EmailCredentialsPassword>7sldfjkUii_s</EmailCredentialsPassword>
       
         <EmailFromAddress>info@tardisbank.com</EmailFromAddress>
 

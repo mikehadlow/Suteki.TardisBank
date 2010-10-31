@@ -106,6 +106,7 @@
     <Compile Include="Services\UserService.cs" />
     <Compile Include="TardisBankException.cs" />
     <Compile Include="ViewModel\AddScheduleViewModel.cs" />
+    <Compile Include="ViewModel\DeleteChildConfirmViewModel.cs" />
     <Compile Include="ViewModel\ForgottenPasswordViewModel.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
     <Compile Include="ViewModel\MakePaymentViewModel.cs" />

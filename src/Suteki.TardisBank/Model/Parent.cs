@@ -55,6 +55,20 @@ namespace Suteki.TardisBank.Model
             ActivationKey = "";
             base.Activate();
         }
+
+        public bool HasChild(string childId)
+        {
+            return Children.Any(x => x.ChildId == childId);
+        }
+
+        public void RemoveChild(string childId)
+        {
+            var childToRemove = Children.SingleOrDefault(x => x.ChildId == childId);
+            if (childToRemove != null)
+            {
+                Children.Remove(childToRemove);
+            }
+        }
     }
 
     public class ChildProxy

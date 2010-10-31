@@ -89,7 +89,9 @@
       <DependentUpon>Web.config</DependentUpon>
     </Content>
     <Content Include="Views\Web.config" />
-    <Content Include="Windsor.xml" />
+    <Content Include="Windsor.xml">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Suteki.TardisBank\Suteki.TardisBank.csproj">
@@ -106,6 +108,7 @@
     <None Include="Views\Account\Summary.cshtml" />
     <None Include="Views\Account\WithdrawCash.cshtml" />
     <None Include="Views\Account\WithdrawCashConfirm.cshtml" />
+    <None Include="Views\Child\DeleteChild.cshtml" />
     <None Include="Views\Child\Index.cshtml" />
     <None Include="Views\Home\Index.cshtml" />
     <None Include="Views\Menu\ChildMenu.cshtml" />

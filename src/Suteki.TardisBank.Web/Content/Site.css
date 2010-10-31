@@ -37,6 +37,11 @@ body
     border-radius: 5px;
 }
 
+#content a.warning
+{
+    background-color: #b00;
+}
+
 #content a:hover
 {
     color: #fff;
@@ -97,6 +102,12 @@ input[type=submit]
     border-width: 0;
 }
 
+input[type=submit]:hover
+{
+    color: #fff;
+    cursor: pointer;
+}
+
 select
 {
     font: 100% Arial;
@@ -105,6 +116,7 @@ select
     border-style: inset;
     border-width: 2px;
 }
+
 
 /* Styles for validation helpers
 -----------------------------------------------------------*/

@@ -1,0 +1,20 @@
+﻿@model DeleteChildConfirmViewModel
+
+@{
+    Layout = "~/Views/Shared/SiteLayout.cshtml";
+}
+
+<h2>Are you sure you want to delete @Model.ChildName's account?</h2>
+<div>
+    @{ Html.BeginForm(); }
+    @Html.HiddenFor(x => x.ChildId)
+    @Html.HiddenFor(x => x.ChildName)
+    <table>
+        <tr>
+            <td>&nbsp;</td>
+            <td><input type="submit" value="Yes, Delete @Model.ChildName's account" /></td>
+        </tr>
+    </table>
+    @{ Html.EndForm(); }
+</div>
+

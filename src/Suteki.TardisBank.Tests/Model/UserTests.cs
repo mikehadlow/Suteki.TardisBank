@@ -66,6 +66,31 @@ namespace Suteki.TardisBank.Tests.Model
                 users[4].GetType().Name.ShouldEqual("Child");
             }
         }
+
+        [Test]
+        public void Should_be_able_to_delete_a_user()
+        {
+            string userId = null;
+            using (var session = store.OpenSession())
+            {
+                var user = new Parent("Mike", "mike@mike.com", "xxxx");
+                session.Store(user);
+                session.SaveChanges();
+                userId = user.Id;
+            }
+
+            using (var session = store.OpenSession())
+            {
+                session.Advanced.DatabaseCommands.Delete(userId, null);
+                session.SaveChanges();
+            }
+
+            using (var session = store.OpenSession())
+            {
+                var user = session.Load<User>(userId);
+                user.ShouldBeNull();
+            }
+        }
     }
 }
 // ReSharper restore InconsistentNaming

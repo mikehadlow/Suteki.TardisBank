@@ -13,6 +13,7 @@ namespace Suteki.TardisBank.Services
         User GetUserByUserName(string userName);
         User GetUserByActivationKey(string activationKey);
         void SaveUser(User user);
+        void DeleteUser(string userId);
         IEnumerable<Child> GetChildrenOf(Parent parent);
 
         bool AreNullOrNotRelated(Parent parent, Child child);
@@ -107,6 +108,11 @@ namespace Suteki.TardisBank.Services
         {
             var parent = CurrentUser as Parent;
             return (child == null) || (parent == null) || (!parent.HasChild(child));
+        }
+
+        public void DeleteUser(string userId)
+        {
+            session.Advanced.DatabaseCommands.Delete(userId, null);            
         }
     }
 }

@@ -79,18 +79,18 @@ namespace Suteki.TardisBank.Controllers
 
             if (ModelState.IsValid)
             {
-                var hashedPassword = formsAuthenticationService.HashAndSalt(
-                    registrationViewModel.Email,
-                    registrationViewModel.Password);
-
-                var user = createUser(hashedPassword);
-
-                var conflictedUser = userService.GetUserByUserName(user.UserName);
+                var conflictedUser = userService.GetUserByUserName(registrationViewModel.Email);
                 if (conflictedUser != null)
                 {
                     ModelState.AddModelError("Email", usernameTakenMessage);
                     return invalidModelStateAction();
                 }
+
+                var hashedPassword = formsAuthenticationService.HashAndSalt(
+                    registrationViewModel.Email,
+                    registrationViewModel.Password);
+
+                var user = createUser(hashedPassword);
 
                 userService.SaveUser(user);
 
