@@ -123,6 +123,7 @@
     <None Include="Views\Child\Index.cshtml" />
     <None Include="Views\Home\About.cshtml" />
     <None Include="Views\Home\Index.cshtml" />
+    <None Include="Views\Home\Legal.cshtml" />
     <None Include="Views\Menu\ChildMenu.cshtml" />
     <None Include="Views\Menu\GuestMenu.cshtml" />
     <None Include="Views\Menu\ParentMenu.cshtml" />
