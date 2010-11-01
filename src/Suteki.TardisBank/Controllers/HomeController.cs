@@ -19,5 +19,15 @@ namespace Suteki.TardisBank.Controllers
         {
             return new HttpStatusCodeResult(404);
         }
+
+        public ViewResult About()
+        {
+            return View();
+        }
+
+        public ViewResult Legal()
+        {
+            return View();
+        }
     }
 }

@@ -37,14 +37,27 @@ body
     border-radius: 5px;
 }
 
-#content a.warning
-{
-    background-color: #b00;
-}
-
 #content a:hover
 {
     color: #fff;
+}
+
+#content a.text_link
+{
+    color: #333;
+    padding: 0px;
+    text-decoration:underline;
+    background-color:transparent;
+}
+
+#content a:hover.text_link
+{
+    color: #333;
+}
+
+#content a.warning
+{
+    background-color: #b00;
 }
 
 div.rightline
