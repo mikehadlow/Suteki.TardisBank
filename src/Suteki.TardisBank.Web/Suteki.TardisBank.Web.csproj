@@ -42,8 +42,12 @@
     <Reference Include="Castle.Windsor">
       <HintPath>..\packages\Castle.Windsor.2.5.1\lib\NET40\Castle.Windsor.dll</HintPath>
     </Reference>
-    <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
-    <Reference Include="System.Web.WebPages" />
+    <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages">
+      <Private>False</Private>
+    </Reference>
     <Reference Include="System.Web.Helpers" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
@@ -72,6 +76,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="404Error.htm" />
     <Content Include="Content\960.css" />
     <Content Include="Content\Images\hover.gif" />
     <Content Include="Content\Images\seperator.gif" />
@@ -79,6 +84,7 @@
     <Content Include="Content\menu_style.css" />
     <Content Include="Content\reset.css" />
     <Content Include="Content\text.css" />
+    <Content Include="GenericError.htm" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Web.config" />
