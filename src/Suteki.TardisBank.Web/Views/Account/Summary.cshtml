@@ -67,5 +67,7 @@
         <div>@Html.ActionLink("Make a Payment", "MakePayment", "Account", new { id = Model.Child.Id }, null)</div>
         <div>&nbsp;</div>
         <div>@Html.ActionLink("Set up schedule", "AddSchedule", "Schedule", new { id = Model.Child.Id }, null)</div>
+    } else {
+        <div>@Html.ActionLink("Withdraw Cash", "WithdrawCash", "Account")</div>
     }
 </div>
