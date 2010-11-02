@@ -11,9 +11,9 @@
         <ScheduleKey>runit</ScheduleKey>
 
         <!--if EmailSmtpServer is empty emails just don't get sent-->
-        <EmailSmtpServer>smtp.gmail.com</EmailSmtpServer>
-        <EmailEnableSsl>true</EmailEnableSsl>
-        <EmailPort>587</EmailPort>
+        <EmailSmtpServer>your.smtp.server</EmailSmtpServer>
+        <EmailEnableSsl>false</EmailEnableSsl>
+        <EmailPort>24</EmailPort>
         
         <!--if the username or password is blank, default credentials are used.-->
         <EmailCredentialsUserName>info@tardisbank.com</EmailCredentialsUserName>

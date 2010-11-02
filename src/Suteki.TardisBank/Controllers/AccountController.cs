@@ -73,7 +73,11 @@ namespace Suteki.TardisBank.Controllers
 
             if (userService.AreNullOrNotRelated(parent, child)) return StatusCode.NotFound;
 
-            return View("Summary", child);
+            return View("Summary", new AccountSummaryViewModel
+            {
+                Parent = parent,
+                Child = child
+            });
         }
 
         [HttpGet]
@@ -84,7 +88,10 @@ namespace Suteki.TardisBank.Controllers
             {
                 return StatusCode.NotFound;
             }
-            return View("Summary", child);
+            return View("Summary", new AccountSummaryViewModel
+            {
+                Child = child
+            });
         }
 
         [HttpGet]

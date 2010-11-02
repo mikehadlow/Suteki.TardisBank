@@ -1,61 +1,71 @@
-﻿@model Child
+﻿@model AccountSummaryViewModel
 
 @{
     Layout = "~/Views/Shared/SiteLayout.cshtml";
 }
 
-<h2>@Model.Name's Account Summary</h2>
-<p>Current Balance: <strong>@Model.Account.Balance.ToString("0.00")</strong></p>
+<h2>@Model.Child.Name's Account Summary</h2>
 
-<h3>Pocket Money Schedule</h3>
-@if(Model.Account.PaymentSchedules.Count == 0) {
-<p>No pocket money schedule has been created yet.</p>
-} else {
-<table>
-    <thead>
-        <tr>
-            <th>Due</th>
-            <th>Interval</th>
-            <th>Description</th>
-            <th class="money">Amount</th>
-            <th>&nbsp;</th>
-        </tr>
-    </thead>
-@foreach(var schedule in Model.Account.PaymentSchedules) {
-    <tbody>
-        <tr>
-            <td>@schedule.NextRun.ToShortDateString()</td>
-            <td>@schedule.Interval</td>
-            <td>@schedule.Description</td>
-            <td class="money">@schedule.Amount.ToString("0.00")</td>
-            <td>@Html.ActionLink("Delete", "RemoveSchedule", "Schedule", new { id = Model.Id, scheduleId = schedule.Id }, new { @class = "warning" })</td>
-        </tr>
-    </tbody>
-}
-</table>
-}
+<div class="grid_8 rightline">
+    <p>Current Balance: <strong>@Model.Child.Account.Balance.ToString("0.00")</strong></p>
 
-<h3>Transactions</h3>
-@if(Model.Account.Transactions.Count == 0) {
-<p>There are no transactions yet.</p>
-} else {
-<table>
-    <thead>
-        <tr>
-            <th>Date</th>
-            <th>Description</th>
-            <th class="money">Amount</th>
-        </tr>
-    </thead>
-@foreach(var transaction in Model.Account.Transactions.Reverse()) {
-    <tbody>
-        <tr>
-            <td>@transaction.Date.ToShortDateString()</td>
-            <td>@transaction.Description</td>
-            <td class="money">@transaction.Amount.ToString("0.00")</td>
-        </tr>
-    </tbody>
-}
-</table>
-}
+    <h3>Pocket Money Schedule</h3>
+    @if(Model.Child.Account.PaymentSchedules.Count == 0) {
+    <p>No pocket money schedule has been created yet.</p>
+    } else {
+    <table>
+        <thead>
+            <tr>
+                <th>Due</th>
+                <th>Interval</th>
+                <th>Description</th>
+                <th class="money">Amount</th>
+                <th>&nbsp;</th>
+            </tr>
+        </thead>
+    @foreach(var schedule in Model.Child.Account.PaymentSchedules) {
+        <tbody>
+            <tr>
+                <td>@schedule.NextRun.ToShortDateString()</td>
+                <td>@schedule.Interval</td>
+                <td>@schedule.Description</td>
+                <td class="money">@schedule.Amount.ToString("0.00")</td>
+                <td>@Html.ActionLink("Delete", "RemoveSchedule", "Schedule", new { id = Model.Child.Id, scheduleId = schedule.Id }, new { @class = "warning" })</td>
+            </tr>
+        </tbody>
+    }
+    </table>
+    }
 
+    <h3>Transactions</h3>
+    @if(Model.Child.Account.Transactions.Count == 0) {
+    <p>There are no transactions yet.</p>
+    } else {
+    <table>
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Description</th>
+                <th class="money">Amount</th>
+            </tr>
+        </thead>
+    @foreach(var transaction in Model.Child.Account.Transactions.Reverse()) {
+        <tbody>
+            <tr>
+                <td>@transaction.Date.ToShortDateString()</td>
+                <td>@transaction.Description</td>
+                <td class="money">@transaction.Amount.ToString("0.00")</td>
+            </tr>
+        </tbody>
+    }
+    </table>
+    }
+</div>
+
+<div class="grid_3">
+    @if(Model.IsParentView) {
+        <div>@Html.ActionLink("Make a Payment", "MakePayment", "Account", new { id = Model.Child.Id }, null)</div>
+        <div>&nbsp;</div>
+        <div>@Html.ActionLink("Set up schedule", "AddSchedule", "Schedule", new { id = Model.Child.Id }, null)</div>
+    }
+</div>
