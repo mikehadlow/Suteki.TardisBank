@@ -1,5 +1,6 @@
 // ReSharper disable InconsistentNaming
 using NUnit.Framework;
+using Suteki.TardisBank.Events;
 using Suteki.TardisBank.Model;
 
 namespace Suteki.TardisBank.Tests.Model
@@ -20,7 +21,16 @@ namespace Suteki.TardisBank.Tests.Model
             parent.MakePaymentTo(child, 10.00M);
 
             somebodyElsesParent = new Parent("Not Dad", "jon@jon.com", "zzz");
+
+            DomainEvent.TurnOff();
         }
+
+        [TearDown]
+        public void TearDown()
+        {
+            DomainEvent.Reset();
+        }
+
 
         [Test]
         public void Child_should_be_able_to_withdraw_cash()
@@ -46,6 +56,20 @@ namespace Suteki.TardisBank.Tests.Model
         public void Child_should_not_be_able_to_withdraw_more_than_their_balance()
         {
             child.WithdrawCashFromParent(parent, 12.11M, "For Toys");
+        }
+
+        [Test]
+        public void Should_raise_a_SendMessageEvent()
+        {
+            SendMessageEvent sendMessageEvent = null;
+
+            DomainEvent.TestWith(@event => { sendMessageEvent = (SendMessageEvent)@event; });
+
+            child.WithdrawCashFromParent(parent, 2.30M, "For Toys");
+
+            sendMessageEvent.ShouldNotBeNull();
+            sendMessageEvent.User.ShouldBeTheSameAs(parent);
+            sendMessageEvent.Message.ShouldEqual("Leo would like to withdraw 2.30");
         }
     }
 }

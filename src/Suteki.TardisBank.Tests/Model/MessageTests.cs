@@ -1,6 +1,7 @@
 // ReSharper disable InconsistentNaming
 using NUnit.Framework;
 using Raven.Client;
+using Suteki.TardisBank.Events;
 using Suteki.TardisBank.Model;
 using Suteki.TardisBank.Tests.Db;
 
@@ -42,7 +43,11 @@ namespace Suteki.TardisBank.Tests.Model
             using(var session = store.OpenSession())
             {
                 var parent = session.Load<Parent>(userId);
-                parent.SendMessage("some message");
+
+                using(DomainEvent.TurnOff())
+                {
+                    parent.SendMessage("some message");
+                }
 
                 parent.Messages.Count.ShouldEqual(1);
                 session.SaveChanges();

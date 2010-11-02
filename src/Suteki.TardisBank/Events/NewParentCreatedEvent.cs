@@ -1,3 +1,4 @@
+using System;
 using Suteki.TardisBank.Model;
 
 namespace Suteki.TardisBank.Events
@@ -6,6 +7,10 @@ namespace Suteki.TardisBank.Events
     {
         public NewParentCreatedEvent(Parent parent)
         {
+            if (parent == null)
+            {
+                throw new ArgumentNullException("parent");
+            }
             Parent = parent;
         }
 

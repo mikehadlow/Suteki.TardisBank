@@ -44,7 +44,7 @@ namespace Suteki.TardisBank.Model
                     Account.Balance.ToString("0.00")));
             }
 
-            parent.SendMessage(string.Format("{0} would like to withdraw {1}", Name, amount));
+            parent.SendMessage(string.Format("{0} would like to withdraw {1}", Name, amount.ToString("0.00")));
             Account.AddTransaction(description, -amount);
         }
     }

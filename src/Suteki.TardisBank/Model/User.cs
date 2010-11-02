@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Suteki.TardisBank.Events;
 
 namespace Suteki.TardisBank.Model
 {
@@ -32,6 +33,8 @@ namespace Suteki.TardisBank.Model
         {
             var nextId = Messages.Count == 0 ? 0 : Messages.Max(x => x.Id) + 1;
             Messages.Add(new Message(nextId, DateTime.Now.Date, text));
+
+            DomainEvent.Raise(new SendMessageEvent(this, text));
         }
 
         public void ReadMessage(int messageId)
