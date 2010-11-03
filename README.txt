@@ -25,6 +25,7 @@ How to get it working
 ---------------------
 
 1. Get the source code.
+1a. In Web.Config change the line: <specifiedPickupDirectory pickupDirectoryLocation="c:\temp\maildrop\"/> to point to a location where the application has write access.
 2. Download RavenDb and follow the instructions to start the RavenDb server on port 8080 (localhost).
 3. Open the solution file in Visual Studio 2010
 4. Hit F5, you should be able to browse the site.
