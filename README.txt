@@ -17,6 +17,7 @@ RavenDb
 960Grid
 
 Blog Posts:
+http://mikehadlow.blogspot.com/2010/10/ravendb-indexes-1st-attempt.html
 http://mikehadlow.blogspot.com/2010/10/tardis-bank-online-pocket-money-banking.html
 http://mikehadlow.blogspot.com/2010/10/ravendb-aspnet-mvc-and-windsor-working.html
 http://mikehadlow.blogspot.com/2010/10/ravendb-playing-with-inheritance-and.html
