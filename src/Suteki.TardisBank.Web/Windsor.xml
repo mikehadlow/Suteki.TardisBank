@@ -21,6 +21,8 @@
       
         <EmailFromAddress>info@tardisbank.com</EmailFromAddress>
 
+        <GoogleAnalyticsUaCode>your UA code here</GoogleAnalyticsUaCode>
+        
       </parameters>
     </component>
 
