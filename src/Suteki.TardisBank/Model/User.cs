@@ -7,6 +7,8 @@ namespace Suteki.TardisBank.Model
 {
     public abstract class User
     {
+        public const int MaxMessages = 20;
+
         public string Id { get; private set; }
         public string Name { get; private set; }
         public string UserName { get; private set; }
@@ -33,8 +35,17 @@ namespace Suteki.TardisBank.Model
         {
             var nextId = Messages.Count == 0 ? 0 : Messages.Max(x => x.Id) + 1;
             Messages.Add(new Message(nextId, DateTime.Now.Date, text));
+            RemoveOldMessages();
 
             DomainEvent.Raise(new SendMessageEvent(this, text));
+        }
+
+        void RemoveOldMessages()
+        {
+            if (Messages.Count <= MaxMessages) return;
+
+            var oldestMessage = Messages.First();
+            Messages.Remove(oldestMessage);
         }
 
         public void ReadMessage(int messageId)

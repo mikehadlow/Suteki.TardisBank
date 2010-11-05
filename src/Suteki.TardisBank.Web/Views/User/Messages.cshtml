@@ -5,6 +5,9 @@
 }
 
 <h2>Your Messages</h2>
+@if(Model.Messages.Count == 0) {
+<p>You have no messages</p>
+} else {
 <table>
 
 @foreach(var message in Model.Messages.Reverse()) {
@@ -20,4 +23,6 @@
 }
 
 </table>
+<p>(Note: we only keep the last @Suteki.TardisBank.Model.User.MaxMessages messages)</p>
+}
 

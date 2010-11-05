@@ -80,6 +80,7 @@
     <Compile Include="Helpers\ActionResultExtensions.cs" />
     <Compile Include="Model\ChildTests.cs" />
     <Compile Include="Model\MakePaymentTests.cs" />
+    <Compile Include="Model\MessageCountLimitTests.cs" />
     <Compile Include="Model\MessageTests.cs" />
     <Compile Include="Model\ParentTests.cs" />
     <Compile Include="Model\PaymentSchedulingQueryTests.cs" />
