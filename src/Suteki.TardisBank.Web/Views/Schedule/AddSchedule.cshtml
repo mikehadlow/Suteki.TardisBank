@@ -17,7 +17,7 @@
             <td>@Html.TextBoxFor(x => x.Description)</td>
         </tr>
         <tr>
-            <td><label for="Amount">The regular amount you want to pay</label></td>
+            <td><label for="Amount">The regular amount you want to pay @Current.CurrencySymbol</label></td>
             <td>@Html.TextBoxFor(x => x.Amount)</td>
         </tr>
         <tr>

@@ -92,6 +92,7 @@
     <Compile Include="Spikes\RavenDbAnyOfPropertyCollection.cs" />
     <Compile Include="Spikes\RavenDbDoesntDoSelectMany.cs" />
     <Compile Include="Spikes\RavenDbSchedulingWithIndex.cs" />
+    <Compile Include="Spikes\ThreadCurrentCultureSpike.cs" />
     <Compile Include="TestExtensions.cs" />
     <Compile Include="Version.cs" />
   </ItemGroup>
