@@ -1,4 +1,5 @@
 // ReSharper disable InconsistentNaming
+using System.Threading;
 using NUnit.Framework;
 using Suteki.TardisBank.Events;
 using Suteki.TardisBank.Model;
@@ -12,6 +13,7 @@ namespace Suteki.TardisBank.Tests.Model
         Parent parent;
         Child child;
         Parent somebodyElsesParent;
+        string currencySymbol = "";
 
         [SetUp]
         public void SetUp()
@@ -21,6 +23,7 @@ namespace Suteki.TardisBank.Tests.Model
             parent.MakePaymentTo(child, 10.00M);
 
             somebodyElsesParent = new Parent("Not Dad", "jon@jon.com", "zzz");
+            currencySymbol = Thread.CurrentThread.CurrentCulture.NumberFormat.CurrencySymbol;
 
             DomainEvent.TurnOff();
         }
@@ -42,7 +45,7 @@ namespace Suteki.TardisBank.Tests.Model
             child.Account.Transactions[1].Description.ShouldEqual("For Toys");
 
             parent.Messages.Count.ShouldEqual(1);
-            parent.Messages[0].Text.ShouldEqual("Leo would like to withdraw 2.30");
+            parent.Messages[0].Text.ShouldEqual("Leo would like to withdraw " + currencySymbol + "2.30");
         }
 
         [Test, ExpectedException(typeof(CashWithdrawException), ExpectedMessage = "Not Your Parent")]
@@ -51,8 +54,7 @@ namespace Suteki.TardisBank.Tests.Model
             child.WithdrawCashFromParent(somebodyElsesParent, 2.30M, "for toys");
         }
 
-        [Test, ExpectedException(typeof(CashWithdrawException),
-            ExpectedMessage = "You can not withdraw 12.11 because you only have 10.00 in your account")]
+        [Test, ExpectedException(typeof(CashWithdrawException))]
         public void Child_should_not_be_able_to_withdraw_more_than_their_balance()
         {
             child.WithdrawCashFromParent(parent, 12.11M, "For Toys");
@@ -69,7 +71,7 @@ namespace Suteki.TardisBank.Tests.Model
 
             sendMessageEvent.ShouldNotBeNull();
             sendMessageEvent.User.ShouldBeTheSameAs(parent);
-            sendMessageEvent.Message.ShouldEqual("Leo would like to withdraw 2.30");
+            sendMessageEvent.Message.ShouldEqual("Leo would like to withdraw " + currencySymbol + "2.30");
         }
     }
 }
