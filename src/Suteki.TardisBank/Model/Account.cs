@@ -6,17 +6,21 @@ namespace Suteki.TardisBank.Model
 {
     public class Account
     {
+        public const int MaxTransactions = 100;
+        public decimal OldTransactionsBalance { get; private set; }
+
         public Account()
         {
             Transactions = new List<Transaction>();
             PaymentSchedules = new List<PaymentSchedule>();
+            OldTransactionsBalance = 0M;
         }
 
         public IList<Transaction> Transactions { get; private set; }
 
         public decimal Balance
         {
-            get { return Transactions.Sum(x => x.Amount); }
+            get { return OldTransactionsBalance + Transactions.Sum(x => x.Amount); }
         }
 
         public IList<PaymentSchedule> PaymentSchedules { get; private set; }
@@ -24,6 +28,17 @@ namespace Suteki.TardisBank.Model
         public void AddTransaction(string description, decimal amount)
         {
             Transactions.Add(new Transaction(description, amount));
+
+            RemoveOldTransactions();
+        }
+
+        void RemoveOldTransactions()
+        {
+            if (Transactions.Count <= MaxTransactions) return;
+
+            var oldestTransaction = Transactions.First();
+            Transactions.Remove(oldestTransaction);
+            OldTransactionsBalance += oldestTransaction.Amount;
         }
 
         public void AddPaymentSchedule(DateTime startDate, Interval interval, decimal amount, string description)
