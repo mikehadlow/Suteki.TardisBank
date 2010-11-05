@@ -121,6 +121,7 @@
     <Compile Include="ViewModel\MakePaymentViewModel.cs" />
     <Compile Include="ViewModel\RegistrationViewModel.cs" />
     <Compile Include="ViewModel\UserViewModel.cs" />
+    <Compile Include="ViewModel\WithdrawCashForChildViewModel.cs" />
     <Compile Include="ViewModel\WithdrawCashViewModel.cs" />
   </ItemGroup>
   <ItemGroup>

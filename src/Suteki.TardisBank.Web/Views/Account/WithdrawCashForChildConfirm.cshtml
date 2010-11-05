@@ -1,0 +1,10 @@
+﻿@model WithdrawCashForChildViewModel
+
+@{
+    Layout = "~/Views/Shared/SiteLayout.cshtml";
+}
+<h2>Withdrawl Confirmed</h2>
+<p>@Model.Amount has been withdrawn from @Model.ChildName's account.</p>
+<p>@Html.ActionLink(Model.ChildName + "'s Account", "ParentView", "Account", new { id = @Model.ChildId }, null)</p>
+
+

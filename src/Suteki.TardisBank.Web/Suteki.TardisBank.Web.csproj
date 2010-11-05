@@ -120,6 +120,8 @@
     <None Include="Views\Account\Summary.cshtml" />
     <None Include="Views\Account\WithdrawCash.cshtml" />
     <None Include="Views\Account\WithdrawCashConfirm.cshtml" />
+    <None Include="Views\Account\WithdrawCashForChild.cshtml" />
+    <None Include="Views\Account\WithdrawCashForChildConfirm.cshtml" />
     <None Include="Views\Admin\DeleteParentConfirm.cshtml" />
     <None Include="Views\Admin\Index.cshtml" />
     <None Include="Views\Analytics\Index.cshtml" />

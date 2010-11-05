@@ -68,8 +68,13 @@
 
 <div class="grid_3">
     @if(Model.IsParentView) {
+        <p>To make a payment into your child's bank account:</p>
         <div>@Html.ActionLink("Make a Payment", "MakePayment", "Account", new { id = Model.Child.Id }, null)</div>
         <div>&nbsp;</div>
+        <p>To hand some cash to your child, or buy something on their behalf:</p>
+        <div>@Html.ActionLink("Withdraw Cash", "WithdrawCashForChild", "Account", new { id = Model.Child.Id }, null)</div>
+        <div>&nbsp;</div>
+        <p>To set up a pocket money payment schedule:</p>
         <div>@Html.ActionLink("Set up Schedule", "AddSchedule", "Schedule", new { id = Model.Child.Id }, null)</div>
     } else {
         <div>@Html.ActionLink("Withdraw Cash", "WithdrawCash", "Account")</div>

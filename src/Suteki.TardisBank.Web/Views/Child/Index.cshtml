@@ -19,8 +19,6 @@
     <tr>
         <td><strong>@child.Name</strong></td>
         <td>@Html.ActionLink("View Account", "ParentView", "Account", new { id = child.ChildId }, null)</td>
-        <td>@Html.ActionLink("Set up pocket money schedule", "AddSchedule", "Schedule", new { id = child.ChildId }, null)</td>
-        <td>@Html.ActionLink("Make a Payment", "MakePayment", "Account", new { id = child.ChildId }, null)</td>
         <td>@Html.ActionLink("Delete", "DeleteChild", "Child", new { id = child.ChildId }, new { @class = "warning" })</td>
     </tr>
 }
