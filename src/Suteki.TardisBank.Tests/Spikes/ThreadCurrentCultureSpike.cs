@@ -11,7 +11,8 @@ namespace Suteki.TardisBank.Tests.Spikes
                 "en-GB",
                 "en-US",
                 "fr",
-                "de-CH"
+                "de-CH",
+                "de"
             };
 
             foreach (var language in languages)

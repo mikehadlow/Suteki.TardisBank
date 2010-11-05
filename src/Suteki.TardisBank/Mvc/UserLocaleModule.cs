@@ -22,8 +22,6 @@ namespace Suteki.TardisBank.Mvc
                 var language = request.UserLanguages[0];
                 if (language == null) return;
 
-                if (language.Length < 3)
-                    language = language + "-" + language.ToUpper();
                 try
                 {
                     Thread.CurrentThread.CurrentCulture = new CultureInfo(language);
