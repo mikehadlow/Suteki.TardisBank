@@ -22,6 +22,8 @@ namespace Suteki.TardisBank.Web
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
             routes.IgnoreRoute("favicon.ico");
+            routes.IgnoreRoute("robots.txt");
+            routes.IgnoreRoute("Content/{*pathInfo}");
 
             routes.MapRoute(
                 "Default", // Route name

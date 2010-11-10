@@ -1,6 +1,8 @@
 ﻿<!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" 
+      xmlns:og="http://opengraphprotocol.org/schema/"
+      xmlns:fb="http://www.facebook.com/2008/fbml">
 <head>
     <meta name="description" content="A free, online, pocket money bank account for parents and kids." />
     <title>Tardis Bank</title>
@@ -16,14 +18,24 @@
 
     <link href="http://ajax.microsoft.com/ajax/jquery.ui/1.8.5/themes/cupertino/jquery-ui.css" rel="stylesheet" type="text/css" />
 
-    <link rel="shortcut icon" href="@Url.Content("~/favicon.ico")">
+    <link rel="shortcut icon" href="@Url.Content("~/Content/Images/TardisBankLogo_16.png")">
+
+    <meta property="og:title" content="Tardis Bank"/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:url" content="http://tardisbank.com/"/>
+    <meta property="og:image" content="http://tardisbank.com/Content/Images/TardisBankLogo_128.png"/>
+    <meta property="og:site_name" content="Tardis Bank"/>
+    <meta property="fb:admins" content="176890825659044"/>
+    <meta property="og:description" content="Online pocket money banking for kids and parents"/>
 
     @Html.Action("Index", "Analytics")
 
 </head>
 <body>
     <div class="container_12" id="header">
-        <div class="grid_8">
+        <div class="grid_2">&nbsp;
+        </div>
+        <div class="grid_6">
             <br />
             <h1>Tardis Bank</h1>
             <p>Pocket money on-line banking for kids and parents</p>
@@ -58,5 +70,18 @@
         <div class="clear"></div>
     </div>
     <div class="clear"></div>
+    <div id="fb-root"></div>
+
+    <script type="text/javascript">
+        window.fbAsyncInit = function () {
+            FB.init({ appId: '176890825659044', status: true, cookie: true, xfbml: true });
+        };
+        (function () {
+            var e = document.createElement('script'); e.async = true;
+            e.src = document.location.protocol + '//connect.facebook.net/en_US/all.js';
+            document.getElementById('fb-root').appendChild(e);
+        } ());
+    </script>
+
 </body>
 </html>

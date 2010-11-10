@@ -10,6 +10,7 @@ body
     background-color: #2580a2;
     background-image: url(Images/title_background.png);
     color: #fff;
+    height: 145px;
 }
 #header a
 {
@@ -20,6 +21,10 @@ body
 #header a:hover
 {
     color: #fff
+}
+#header h1
+{
+    font-size: 32pt;
 }
 
 #login_status
