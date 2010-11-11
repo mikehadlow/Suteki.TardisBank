@@ -18,17 +18,17 @@ namespace Suteki.TardisBank.Tests.Container
         [SetUp]
         public void SetUp()
         {
-            _types = _type.Assembly.GetExportedTypes();
-            _container = new WindsorContainer().Install(new ControllersInstaller());
+            types = type.Assembly.GetExportedTypes();
+            container = new WindsorContainer().Install(new ControllersInstaller());
         }
 
-        private IWindsorContainer _container;
-        private readonly Type _type = typeof (HomeController);
-        private Type[] _types;
+        private IWindsorContainer container;
+        private readonly Type type = typeof (HomeController);
+        private Type[] types;
 
         private IHandler[] ControllerHandlers()
         {
-            return _container.Kernel.GetAssignableHandlers(typeof (IController));
+            return container.Kernel.GetAssignableHandlers(typeof (IController));
         }
 
         [Test]
@@ -44,7 +44,7 @@ namespace Suteki.TardisBank.Tests.Container
         public void Controllers_have_Controller_name_suffix()
         {
             var controllers = ControllerHandlers().Select(h => h.ComponentModel.Implementation).ToSet();
-            var namedControllers = _types.Where(t => t.Name.EndsWith("Controller")).ToSet();
+            var namedControllers = types.Where(t => t.Name.EndsWith("Controller")).ToSet();
 
             controllers.SymmetricExceptWith(namedControllers);
 
@@ -56,7 +56,7 @@ namespace Suteki.TardisBank.Tests.Container
         public void Controllers_implement_IController()
         {
             var controllers = ControllerHandlers().Select(h => h.ComponentModel.Implementation).ToSet();
-            var typedControllers = _types.Where(t => t.Is<IController>()).ToSet();
+            var typedControllers = types.Where(t => t.Is<IController>()).ToSet();
 
             controllers.SymmetricExceptWith(typedControllers);
 
@@ -67,7 +67,7 @@ namespace Suteki.TardisBank.Tests.Container
         public void Controllers_live_in_controllers_namespace()
         {
             var controllers = ControllerHandlers().Select(h => h.ComponentModel.Implementation).ToSet();
-            var typesInControllersNamespace = _types.Where(t => t.Namespace == _type.Namespace).ToSet();
+            var typesInControllersNamespace = types.Where(t => t.Namespace == type.Namespace).ToSet();
 
             controllers.SymmetricExceptWith(typesInControllersNamespace);
 
