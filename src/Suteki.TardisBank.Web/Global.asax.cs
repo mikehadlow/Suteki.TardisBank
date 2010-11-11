@@ -53,8 +53,9 @@ namespace Suteki.TardisBank.Web
         {
             if (container == null)
             {
-                container = new WindsorContainer(new XmlInterpreter("Windsor.xml"))
+                container = new WindsorContainer()
                     .Install(
+                        Configuration.FromXmlFile("Windsor.xml"),
                         FromAssembly.InDirectory(new AssemblyFilter(HttpRuntime.BinDirectory, "Suteki.*.dll")));
             }
         }

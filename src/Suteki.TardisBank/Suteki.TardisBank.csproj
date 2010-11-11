@@ -88,7 +88,7 @@
     <Compile Include="Handlers\SendRegistrationEmailHandler.cs" />
     <Compile Include="Indexes\Child_ByPendingSchedule.cs" />
     <Compile Include="IoC\ControllersInstaller.cs" />
-    <Compile Include="IoC\CoreInstaller.cs" />
+    <Compile Include="IoC\MvcGooInstaller.cs" />
     <Compile Include="IoC\HandlerInstaller.cs" />
     <Compile Include="IoC\RavenInstaller.cs" />
     <Compile Include="IoC\ServicesInstaller.cs" />

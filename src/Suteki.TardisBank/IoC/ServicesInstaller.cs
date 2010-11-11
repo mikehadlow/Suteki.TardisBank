@@ -1,4 +1,3 @@
-using System;
 using Castle.MicroKernel.Registration;
 using Castle.MicroKernel.SubSystems.Configuration;
 using Castle.Windsor;
@@ -12,8 +11,8 @@ namespace Suteki.TardisBank.IoC
             container.Register(
                 AllTypes
                     .FromThisAssembly()
-                    .Where(type => type.Namespace == "Suteki.TardisBank.Services")
-                    .WithService.FirstInterface()
+                    .Where(Component.IsInNamespace("Suteki.TardisBank.Services"))
+                    .WithService.DefaultInterface()
                     .Configure(c => c.LifeStyle.Transient)
                 );
         }

@@ -5,7 +5,7 @@ using Castle.Windsor;
 
 namespace Suteki.TardisBank.IoC
 {
-    public class CoreInstaller : IWindsorInstaller
+    public class MvcGooInstaller : IWindsorInstaller
     {
         public void Install(IWindsorContainer container, IConfigurationStore store)
         {
