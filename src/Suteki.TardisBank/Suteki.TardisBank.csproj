@@ -76,7 +76,7 @@
     <Compile Include="Controllers\PasswordController.cs" />
     <Compile Include="Controllers\ScheduleController.cs" />
     <Compile Include="Controllers\ScheduleRunnerController.cs" />
-    <Compile Include="Controllers\StatusCode.cs" />
+    <Compile Include="Helpers\StatusCode.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Events\DomainEvent.cs" />
     <Compile Include="Events\IDomainEvent.cs" />
