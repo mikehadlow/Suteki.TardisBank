@@ -5,7 +5,7 @@ using Castle.MicroKernel;
 
 namespace Suteki.TardisBank.IoC
 {
-    public class WindsorControllerFactory : IControllerFactory
+    public class WindsorControllerFactory : DefaultControllerFactory
     {
         readonly IKernel kernel;
 
@@ -14,7 +14,7 @@ namespace Suteki.TardisBank.IoC
             this.kernel = kernel;
         }
 
-        public IController CreateController(RequestContext requestContext, string controllerName)
+        public override IController CreateController(RequestContext requestContext, string controllerName)
         {
             if (requestContext == null)
             {
@@ -35,7 +35,7 @@ namespace Suteki.TardisBank.IoC
             }
         }
 
-        public void ReleaseController(IController controller)
+        public override void ReleaseController(IController controller)
         {
             if (controller == null)
             {

@@ -76,7 +76,7 @@
     <Compile Include="Controllers\PasswordController.cs" />
     <Compile Include="Controllers\ScheduleController.cs" />
     <Compile Include="Controllers\ScheduleRunnerController.cs" />
-    <Compile Include="Controllers\StatusCode.cs" />
+    <Compile Include="Helpers\StatusCode.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Events\DomainEvent.cs" />
     <Compile Include="Events\IDomainEvent.cs" />
@@ -88,7 +88,7 @@
     <Compile Include="Handlers\SendRegistrationEmailHandler.cs" />
     <Compile Include="Indexes\Child_ByPendingSchedule.cs" />
     <Compile Include="IoC\ControllersInstaller.cs" />
-    <Compile Include="IoC\CoreInstaller.cs" />
+    <Compile Include="IoC\MvcGooInstaller.cs" />
     <Compile Include="IoC\HandlerInstaller.cs" />
     <Compile Include="IoC\RavenInstaller.cs" />
     <Compile Include="IoC\ServicesInstaller.cs" />

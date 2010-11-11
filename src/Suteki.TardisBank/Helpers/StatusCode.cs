@@ -1,6 +1,6 @@
 using System.Web.Mvc;
 
-namespace Suteki.TardisBank.Controllers
+namespace Suteki.TardisBank.Helpers
 {
     public static class StatusCode
     {

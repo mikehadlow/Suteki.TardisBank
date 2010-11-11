@@ -5,7 +5,7 @@ using Suteki.TardisBank.Handlers;
 
 namespace Suteki.TardisBank.IoC
 {
-    public class HandlerInstaller : IWindsorInstaller
+    public class HandlersInstaller : IWindsorInstaller
     {
         public void Install(IWindsorContainer container, IConfigurationStore store)
         {
