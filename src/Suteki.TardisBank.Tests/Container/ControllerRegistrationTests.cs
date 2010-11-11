@@ -26,16 +26,36 @@ namespace Suteki.TardisBank.Tests.Container
 
 
         [Test]
-        public void All_controller_types_are_registered()
+        public void Controllers_implement_IController()
         {
-            var registeredControllers = ControllerHandlers().Select(h => h.ComponentModel.Implementation).ToSet();
+            var controllers = ControllerHandlers().Select(h => h.ComponentModel.Implementation).ToSet();
             var typedControllers = _types.Where(t => t.Is<IController>()).ToSet();
-            var typesInControllersNamespace = _types.Where(t => t.Namespace == _type.Namespace).ToSet();
-            var namedControllers = _types.Where(t => t.Name.EndsWith("controller", StringComparison.OrdinalIgnoreCase)).ToSet();
 
-            Assert.That(registeredControllers.SetEquals(typedControllers));
-            Assert.That(registeredControllers.SetEquals(typesInControllersNamespace));
-            Assert.That(registeredControllers.SetEquals(namedControllers));
+            controllers.SymmetricExceptWith(typedControllers);
+
+            Assert.IsEmpty(controllers.ToArray());
+        }
+
+        [Test]
+        public void Controllers_live_in_controllers_namespace()
+        {
+            var controllers = ControllerHandlers().Select(h => h.ComponentModel.Implementation).ToSet();
+            var typesInControllersNamespace = _types.Where(t => t.Namespace == _type.Namespace).ToSet();
+
+            controllers.SymmetricExceptWith(typesInControllersNamespace);
+
+            Assert.IsEmpty(controllers.ToArray());
+        }
+
+        [Test]
+        public void Controllers_have_Controller_name_suffix()
+        {
+            var controllers = ControllerHandlers().Select(h => h.ComponentModel.Implementation).ToSet();
+            var namedControllers = _types.Where(t => t.Name.EndsWith("Controller")).ToSet();
+
+            controllers.SymmetricExceptWith(namedControllers);
+
+            Assert.IsEmpty(controllers.ToArray());
         }
 
         private IHandler[] ControllerHandlers()
