@@ -9,15 +9,15 @@ namespace Suteki.TardisBank.Tests.Db
     {
         protected DocumentStore NewDocumentStore()
         {
-            var documentStore = new EmbeddablDocumentStore()
-            {
+            var documentStore = new EmbeddablDocumentStore
+                                    {
                 RunInMemory = true,
                 Conventions =
                 {
                     FindTypeTagName = type => typeof(User).IsAssignableFrom(type) ? "users" : null
                 }
             };
-            RavenInstaller.DoInitialisation(documentStore);
+            RavenInstaller.DoInitialisation(null, documentStore);
             return documentStore;
         }
     }

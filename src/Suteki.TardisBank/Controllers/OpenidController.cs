@@ -1,7 +1,6 @@
 using System.Web.Mvc;
 using DotNetOpenAuth.OpenId.RelyingParty;
 using Suteki.TardisBank.Model;
-using Suteki.TardisBank.Mvc;
 using Suteki.TardisBank.Services;
 
 namespace Suteki.TardisBank.Controllers
@@ -45,7 +44,7 @@ namespace Suteki.TardisBank.Controllers
             return View("Login");
         }
 
-        [ValidateInput(false), UnitOfWork]
+        [ValidateInput(false)]
         public ActionResult Authenticate(string returnUrl)
         {
             var response = openIdService.GetResponse();

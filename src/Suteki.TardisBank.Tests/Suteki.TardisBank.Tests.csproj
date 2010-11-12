@@ -76,6 +76,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Container\ControllerRegistrationTests.cs" />
+    <Compile Include="Container\DataStoreRegistrationTests.cs" />
     <Compile Include="Container\SetHelper.cs" />
     <Compile Include="Controllers\HomeControllerTests.cs" />
     <Compile Include="Db\LocalClientTest.cs" />
@@ -101,6 +102,7 @@
     <Compile Include="Version.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

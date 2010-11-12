@@ -2,7 +2,6 @@ using System;
 using System.Web.Mvc;
 using Suteki.TardisBank.Helpers;
 using Suteki.TardisBank.IoC;
-using Suteki.TardisBank.Mvc;
 using Suteki.TardisBank.Services;
 
 namespace Suteki.TardisBank.Controllers
@@ -18,7 +17,7 @@ namespace Suteki.TardisBank.Controllers
             this.configuration = configuration;
         }
 
-        [HttpGet, UnitOfWork]
+        [HttpGet]
         public ActionResult Execute(string id)
         {
             if (id == null || configuration.ScheduleKey != id) return StatusCode.NotFound;

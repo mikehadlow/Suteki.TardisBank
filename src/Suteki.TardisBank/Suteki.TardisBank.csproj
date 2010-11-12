@@ -91,6 +91,8 @@
     <Compile Include="IoC\MvcGooInstaller.cs" />
     <Compile Include="IoC\HandlerInstaller.cs" />
     <Compile Include="IoC\RavenInstaller.cs" />
+    <Compile Include="IoC\SaveChangesConcern.cs" />
+    <Compile Include="IoC\SaveChangesOnDecommissionDescriptor.cs" />
     <Compile Include="IoC\ServicesInstaller.cs" />
     <Compile Include="IoC\TardisConfiguration.cs" />
     <Compile Include="IoC\WindsorControllerFactory.cs" />
@@ -103,7 +105,6 @@
     <Compile Include="Model\Transaction.cs" />
     <Compile Include="Model\User.cs" />
     <Compile Include="Mvc\Current.cs" />
-    <Compile Include="Mvc\UnitOfWorkAttribute.cs" />
     <Compile Include="Mvc\UserLocaleModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\EmailService.cs" />

@@ -2,7 +2,6 @@ using System;
 using System.Web.Mvc;
 using Suteki.TardisBank.Helpers;
 using Suteki.TardisBank.Model;
-using Suteki.TardisBank.Mvc;
 using Suteki.TardisBank.Services;
 using Suteki.TardisBank.ViewModel;
 
@@ -37,7 +36,7 @@ namespace Suteki.TardisBank.Controllers
             return View("AddSchedule", addScheduleViewModel);
         }
 
-        [HttpPost, UnitOfWork]
+        [HttpPost]
         public ActionResult AddSchedule(AddScheduleViewModel addScheduleViewModel)
         {
             if (!ModelState.IsValid) return View("AddSchedule", addScheduleViewModel);
@@ -55,7 +54,7 @@ namespace Suteki.TardisBank.Controllers
             return View("AddScheduleConfirm", addScheduleViewModel);
         }
 
-        [HttpGet, UnitOfWork]
+        [HttpGet]
         public ActionResult RemoveSchedule(string id, int scheduleId)
         {
             // id is the child user name

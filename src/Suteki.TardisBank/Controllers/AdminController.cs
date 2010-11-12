@@ -1,7 +1,6 @@
 using System.Web.Mvc;
 using Suteki.TardisBank.Helpers;
 using Suteki.TardisBank.Model;
-using Suteki.TardisBank.Mvc;
 using Suteki.TardisBank.Services;
 using Suteki.TardisBank.ViewModel;
 
@@ -56,7 +55,6 @@ namespace Suteki.TardisBank.Controllers
         }
 
         [HttpPost]
-        [UnitOfWork]
         public ActionResult ChangePassword(ChangePasswordViewModel model)
         {
             

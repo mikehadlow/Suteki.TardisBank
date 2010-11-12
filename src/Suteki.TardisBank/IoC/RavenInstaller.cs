@@ -14,28 +14,18 @@ namespace Suteki.TardisBank.IoC
         public void Install(IWindsorContainer container, IConfigurationStore store)
         {
             container.Register(
-                Component.For<IDocumentStore>().Instance(CreateDocumentStore()).LifeStyle.Singleton,
-                Component.For<IDocumentSession>().UsingFactoryMethod(GetDocumentSesssion).LifeStyle.PerWebRequest
+                Component.For<IDocumentStore>().ImplementedBy<DocumentStore>()
+                    .DependsOn(new {connectionStringName = "tardisConnection"})
+                    .OnCreate(DoInitialisation)
+                    .LifeStyle.Singleton,
+                Component.For<IDocumentSession>()
+                    .AddDescriptor(new SaveChangesOnDecommissionDescriptor())
+                    .UsingFactoryMethod(k => k.Resolve<IDocumentStore>().OpenSession())
+                    .LifeStyle.PerWebRequest
                 );
         }
 
-        static IDocumentStore CreateDocumentStore()
-        {
-            var store = new DocumentStore
-            {
-                ConnectionStringName = "tardisConnection"
-            };
-            DoInitialisation(store);
-            return store;
-        }
-
-        static IDocumentSession GetDocumentSesssion(IKernel kernel)
-        {
-            var store = kernel.Resolve<IDocumentStore>();
-            return store.OpenSession();
-        }
-
-        public static void DoInitialisation(IDocumentStore store)
+        public static void DoInitialisation(IKernel kernel, IDocumentStore store)
         {
             store.Initialize();
             IndexCreation.CreateIndexes(typeof(Child_ByPendingSchedule).Assembly, store);
