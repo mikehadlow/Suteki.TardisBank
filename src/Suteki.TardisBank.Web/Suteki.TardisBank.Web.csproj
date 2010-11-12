@@ -90,6 +90,8 @@
     <Content Include="Content\Images\TardisBankLogo_32.png" />
     <Content Include="Content\Images\TardisBankLogo_64.png" />
     <Content Include="Content\Images\TardisBankLogo_75.png" />
+    <Content Include="Content\Images\TardisBankLogo_Shadow.png" />
+    <Content Include="Content\Images\TardisBankLogo_ShadowWhite.png" />
     <Content Include="Content\Images\title_background.png" />
     <Content Include="Content\menu_style.css" />
     <Content Include="Content\reset.css" />
