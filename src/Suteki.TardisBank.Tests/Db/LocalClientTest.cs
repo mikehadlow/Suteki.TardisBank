@@ -17,7 +17,7 @@ namespace Suteki.TardisBank.Tests.Db
                     FindTypeTagName = type => typeof(User).IsAssignableFrom(type) ? "users" : null
                 }
             };
-            RavenInstaller.DoInitialisation(documentStore);
+            RavenInstaller.DoInitialisation(null, documentStore);
             return documentStore;
         }
     }

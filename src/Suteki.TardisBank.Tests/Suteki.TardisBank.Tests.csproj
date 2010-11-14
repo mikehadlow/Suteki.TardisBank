@@ -76,6 +76,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Container\ControllerRegistrationTests.cs" />
+    <Compile Include="Container\RavenRegistrationTests.cs" />
     <Compile Include="Container\SetHelper.cs" />
     <Compile Include="Controllers\HomeControllerTests.cs" />
     <Compile Include="Db\LocalClientTest.cs" />
