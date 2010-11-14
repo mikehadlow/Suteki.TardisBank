@@ -1,4 +1,5 @@
 using System;
+using Suteki.TardisBank.Helpers;
 
 namespace Suteki.TardisBank.Tests.Spikes
 {
@@ -28,6 +29,7 @@ namespace Suteki.TardisBank.Tests.Spikes
 
             Console.Out.WriteLine("{0}", culture.NumberFormat.CurrencySymbol);
             Console.WriteLine("{0}: {1}", language, 4.50M.ToString("c"));
+            Console.WriteLine("Current Date pattern: {0}", DateFormatter.CurrentJQuery);
         }
     }
 }
