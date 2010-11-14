@@ -1,17 +1,21 @@
 using System.Web.Mvc;
 using Suteki.TardisBank.Helpers;
 using Suteki.TardisBank.Model;
+using Suteki.TardisBank.Mvc;
 using Suteki.TardisBank.Services;
+using Suteki.TardisBank.ViewModel;
 
 namespace Suteki.TardisBank.Controllers
 {
     public class AdminController : Controller
     {
         readonly IUserService userService;
+        readonly IFormsAuthenticationService formsAuthenticationService;
 
-        public AdminController(IUserService userService)
+        public AdminController(IUserService userService, IFormsAuthenticationService formsAuthenticationService)
         {
             this.userService = userService;
+            this.formsAuthenticationService = formsAuthenticationService;
         }
 
         [HttpGet]
@@ -26,7 +30,7 @@ namespace Suteki.TardisBank.Controllers
             return View();
         }
 
-        [HttpGet]
+        [HttpGet, UnitOfWork]
         public ActionResult DeleteParent()
         {
             var parent = userService.CurrentUser as Parent;
@@ -43,5 +47,43 @@ namespace Suteki.TardisBank.Controllers
 
             return RedirectToAction("Logout", "User");
         }
+
+        [HttpGet]
+        public ActionResult ChangePassword()
+        {
+            return View();
+        }
+
+        [HttpPost, UnitOfWork]
+        public ActionResult ChangePassword(ChangePasswordViewModel model)
+        {
+
+            var oldHashedPassword = GetHashedPassword(model.OldPassword);
+            bool passwordIsOk = false;
+            if (oldHashedPassword == userService.CurrentUser.Password)
+            {
+                passwordIsOk = true;
+            }
+            else
+            {
+                ModelState.AddModelError("OldPassword", "The password you provided is invalid");
+            }
+            if (ModelState.IsValid && passwordIsOk)
+            {
+                var newHashedPassword = GetHashedPassword(model.NewPassword);
+                userService.CurrentUser.ResetPassword(newHashedPassword);
+                // TODO: we should have also a flash message saying it's been successful
+                return RedirectToAction("Index");
+            }
+            return View();
+        }
+
+        private string GetHashedPassword(string password)
+        {
+            return formsAuthenticationService.HashAndSalt(
+                userService.CurrentUser.UserName,
+                password);
+        }
+
     }
 }

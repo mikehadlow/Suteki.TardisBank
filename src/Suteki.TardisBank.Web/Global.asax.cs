@@ -3,7 +3,6 @@ using System.Web.Mvc;
 using System.Web.Routing;
 using Castle.MicroKernel.Registration;
 using Castle.Windsor;
-using Castle.Windsor.Configuration.Interpreters;
 using Castle.Windsor.Installer;
 
 namespace Suteki.TardisBank.Web
