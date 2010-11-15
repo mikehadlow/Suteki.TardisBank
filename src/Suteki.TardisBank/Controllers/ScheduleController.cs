@@ -42,6 +42,12 @@ namespace Suteki.TardisBank.Controllers
         {
             if (!ModelState.IsValid) return View("AddSchedule", addScheduleViewModel);
 
+            if (addScheduleViewModel.StartDate < DateTime.Now.Date)
+            {
+                ModelState.AddModelError("StartDate", "The start date can not be in the past.");
+                return View("AddSchedule", addScheduleViewModel);
+            }
+
             var child = userService.GetUser(addScheduleViewModel.ChildId) as Child;
             if (userService.IsNotChildOfCurrentUser(child)) return StatusCode.NotFound;
 
