@@ -32,7 +32,7 @@
         </tr>
         <tr>
             <td><label for="StartDate">When do you want the payments to start</label></td>
-            <td>@Html.TextBoxFor(x => x.StartDate)</td>
+            <td>@Html.TextBox("StartDate", Model.StartDate.ToShortDateString())</td>
         </tr>
         <tr>
             <td>&nbsp;</td>
