@@ -4,6 +4,7 @@ using System.Web.Routing;
 using Castle.MicroKernel.Registration;
 using Castle.Windsor;
 using Castle.Windsor.Installer;
+using Suteki.TardisBank.Mvc;
 
 namespace Suteki.TardisBank.Web
 {
@@ -15,6 +16,7 @@ namespace Suteki.TardisBank.Web
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
             filters.Add(new HandleErrorAttribute());
+            filters.Add(new CultureActionFilter());
         }
 
         public static void RegisterRoutes(RouteCollection routes)
