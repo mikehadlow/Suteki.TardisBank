@@ -103,6 +103,7 @@
     <Compile Include="Model\PaymentSchedule.cs" />
     <Compile Include="Model\Transaction.cs" />
     <Compile Include="Model\User.cs" />
+    <Compile Include="Mvc\CultureActionFilter.cs" />
     <Compile Include="Mvc\Current.cs" />
     <Compile Include="Mvc\UnitOfWorkAttribute.cs" />
     <Compile Include="Mvc\UserLocaleModule.cs" />
